@@ -1,0 +1,4706 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#ffffff"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="Dani Fitness"
+    >
+
+    <link rel="manifest" href="manifest.json">
+
+    <title>Dani Fitness ❤️</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+    <style>
+
+        /* =========================================================
+           APPLE / IOS DESIGN SYSTEM
+        ========================================================= */
+
+        :root {
+            --pink: #ff375f;
+            --pink-soft: #fff1f4;
+            --purple: #af52de;
+            --blue: #007aff;
+            --green: #34c759;
+            --orange: #ff9500;
+
+            --text: #111111;
+            --secondary: #6e6e73;
+            --tertiary: #8e8e93;
+
+            --background: #f5f5f7;
+            --card: #ffffff;
+
+            --separator: rgba(60, 60, 67, 0.10);
+        }
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "SF Pro Display",
+                "SF Pro Text",
+                "Helvetica Neue",
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff 0px,
+                    #f5f5f7 420px
+                );
+
+            color: var(--text);
+
+            -webkit-font-smoothing: antialiased;
+
+            -webkit-tap-highlight-color: transparent;
+
+            user-select: none;
+
+            overscroll-behavior-y: none;
+        }
+
+
+        button {
+            font-family: inherit;
+        }
+
+
+        img {
+            -webkit-user-drag: none;
+        }
+
+
+        /* =========================================================
+           APP CONTAINER
+        ========================================================= */
+
+        .app-shell {
+
+            width: 100%;
+
+            max-width: 520px;
+
+            min-height: 100vh;
+
+            margin: auto;
+
+            background: #f5f5f7;
+
+            position: relative;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================================
+           IOS GLASS
+        ========================================================= */
+
+        .ios-glass {
+
+            background: rgba(255,255,255,.82);
+
+            backdrop-filter: blur(24px) saturate(180%);
+
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+
+            border-bottom: 1px solid rgba(60,60,67,.08);
+        }
+
+
+        .ios-card {
+
+            background: rgba(255,255,255,.96);
+
+            border-radius: 24px;
+
+            border: 1px solid rgba(60,60,67,.08);
+
+            box-shadow:
+                0 2px 8px rgba(0,0,0,.025),
+                0 12px 32px rgba(0,0,0,.035);
+        }
+
+
+        .ios-button {
+
+            transition:
+                transform .18s ease,
+                opacity .18s ease,
+                background .18s ease;
+        }
+
+
+        .ios-button:active {
+            transform: scale(.96);
+        }
+
+
+        /* =========================================================
+           SCROLLBAR
+        ========================================================= */
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+
+        /* =========================================================
+           ANIMATIONS
+        ========================================================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .fade-up {
+            animation: fadeUp .45s ease both;
+        }
+
+
+        @keyframes scaleIn {
+
+            from {
+                opacity: 0;
+                transform: scale(.88);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+
+        .scale-in {
+            animation: scaleIn .35s cubic-bezier(.2,.8,.2,1) both;
+        }
+
+
+        @keyframes pulseSoft {
+
+            0%,100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+
+        .pulse-soft {
+            animation: pulseSoft 2s ease-in-out infinite;
+        }
+
+
+        @keyframes medalFloat {
+
+            0% {
+                transform: translateY(20px) scale(.5) rotate(-15deg);
+                opacity: 0;
+            }
+
+            50% {
+                transform: translateY(-10px) scale(1.12) rotate(5deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(0) scale(1) rotate(0);
+                opacity: 1;
+            }
+        }
+
+
+        .medal-animation {
+            animation:
+                medalFloat .8s cubic-bezier(.17,.67,.35,1.35) both;
+        }
+
+
+        @keyframes shine {
+
+            from {
+                transform: translateX(-120%);
+            }
+
+            to {
+                transform: translateX(120%);
+            }
+        }
+
+
+        .shine::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 50%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.75),
+                    transparent
+                );
+
+            transform: translateX(-120%);
+
+            animation: shine 1.2s ease;
+        }
+
+
+        @keyframes checkPop {
+
+            0% {
+                transform: scale(0);
+            }
+
+            70% {
+                transform: scale(1.25);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+
+        .check-pop {
+            animation: checkPop .45s cubic-bezier(.2,.8,.2,1);
+        }
+
+
+        /* =========================================================
+           PROGRESS
+        ========================================================= */
+
+        .progress-track {
+
+            height: 8px;
+
+            background: #e9e9ee;
+
+            border-radius: 999px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-fill {
+
+            height: 100%;
+
+            border-radius: 999px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff375f,
+                    #ff2d55,
+                    #af52de
+                );
+
+            transition: width .7s cubic-bezier(.2,.8,.2,1);
+        }
+
+
+        /* =========================================================
+           HERO PHOTO
+        ========================================================= */
+
+        .hero-photo {
+
+            height: 250px;
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            background: #e5e5ea;
+        }
+
+
+        .hero-photo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        .hero-photo::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,.58),
+                    rgba(0,0,0,.04) 55%,
+                    transparent
+                );
+        }
+
+
+        /* =========================================================
+           MEDAL
+        ========================================================= */
+
+        .medal {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #fff7d6,
+                    #f6c85f
+                );
+
+            border: 2px solid rgba(202,147,24,.28);
+
+            box-shadow:
+                0 5px 15px rgba(190,145,40,.18);
+        }
+
+
+        .medal.locked {
+
+            background: #f2f2f7;
+
+            border-color: #e5e5ea;
+
+            filter: grayscale(1);
+
+            opacity: .55;
+
+            box-shadow: none;
+        }
+
+
+        /* =========================================================
+           CALENDAR
+        ========================================================= */
+
+        .calendar-day {
+
+            min-height: 62px;
+
+            border-radius: 18px;
+
+            background: #f8f8fa;
+
+            border: 1px solid #eeeeF2;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 3px;
+
+            transition: all .18s ease;
+        }
+
+
+        .calendar-day.selected {
+
+            background: #111111;
+
+            color: white;
+
+            border-color: #111111;
+
+            box-shadow:
+                0 6px 16px rgba(0,0,0,.16);
+        }
+
+
+        .calendar-day.today:not(.selected) {
+
+            border: 2px solid var(--pink);
+
+            background: white;
+        }
+
+
+        .calendar-day.completed {
+
+            background: #f0fff3;
+
+            border-color: #c8f2d1;
+        }
+
+
+        .calendar-day.selected.completed {
+
+            background: #111111;
+
+            border-color: #111111;
+        }
+
+
+        /* =========================================================
+           BOTTOM NAV
+        ========================================================= */
+
+        .bottom-nav {
+
+            position: fixed;
+
+            left: 50%;
+
+            bottom: 0;
+
+            transform: translateX(-50%);
+
+            width: min(520px, 100%);
+
+            padding:
+                8px
+                12px
+                calc(8px + env(safe-area-inset-bottom));
+
+            background: rgba(255,255,255,.88);
+
+            backdrop-filter: blur(25px) saturate(180%);
+
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+
+            border-top: 1px solid rgba(60,60,67,.10);
+
+            z-index: 40;
+        }
+
+
+        .nav-button {
+
+            flex: 1;
+
+            color: #8e8e93;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            transition: .2s ease;
+        }
+
+
+        .nav-button.active {
+
+            color: var(--pink);
+        }
+
+
+        .nav-icon {
+
+            width: 23px;
+
+            height: 23px;
+
+            margin: auto auto 3px;
+        }
+
+
+        /* =========================================================
+           MODALS
+        ========================================================= */
+
+        .modal-backdrop {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 100;
+
+            background: rgba(0,0,0,.32);
+
+            backdrop-filter: blur(12px);
+
+            -webkit-backdrop-filter: blur(12px);
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: center;
+        }
+
+
+        .modal-sheet {
+
+            width: min(520px, 100%);
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: rgba(255,255,255,.97);
+
+            border-radius: 32px 32px 0 0;
+
+            padding:
+                12px
+                20px
+                calc(24px + env(safe-area-inset-bottom));
+
+            animation: fadeUp .35s ease;
+        }
+
+
+        @media (min-width: 640px) {
+
+            .modal-backdrop {
+                align-items: center;
+                padding: 20px;
+            }
+
+            .modal-sheet {
+                border-radius: 30px;
+            }
+        }
+
+
+        /* =========================================================
+           WEEK COMPLETE OVERLAY
+        ========================================================= */
+
+        #week-complete-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 200;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(255,55,95,.14),
+                    transparent 45%
+                ),
+                rgba(255,255,255,.94);
+
+            backdrop-filter: blur(25px);
+
+            -webkit-backdrop-filter: blur(25px);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 24px;
+        }
+
+
+        #week-complete-overlay.show {
+            display: flex;
+        }
+
+
+        .celebration-card {
+
+            width: 100%;
+
+            max-width: 390px;
+
+            text-align: center;
+
+            animation: scaleIn .5s cubic-bezier(.2,.8,.2,1);
+        }
+
+
+        /* =========================================================
+           FINAL SCREEN
+        ========================================================= */
+
+        #finale {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 300;
+
+            display: none;
+
+            background:
+                radial-gradient(
+                    circle at 50% 25%,
+                    rgba(255,55,95,.14),
+                    transparent 45%
+                ),
+                #ffffff;
+
+            overflow-y: auto;
+        }
+
+
+        #finale.show {
+            display: block;
+        }
+
+
+        /* =========================================================
+           SECTION VISIBILITY
+        ========================================================= */
+
+        .page {
+            display: none;
+        }
+
+
+        .page.active {
+            display: block;
+        }
+
+
+        /* =========================================================
+           SAFE AREAS
+        ========================================================= */
+
+        .safe-top {
+            padding-top: env(safe-area-inset-top);
+        }
+
+
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+
+        /* =========================================================
+           iOS STYLE SWITCH
+        ========================================================= */
+
+        .ios-pill {
+
+            border-radius: 999px;
+
+            background: #f2f2f7;
+
+            border: 1px solid rgba(60,60,67,.07);
+
+            padding: 5px 10px;
+        }
+
+
+        /* =========================================================
+           EXERCISE MEDIA
+        ========================================================= */
+
+.exercise-media {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #f2f2f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exercise-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stat-card {
+
+            background: #f8f8fa;
+
+            border-radius: 18px;
+
+            padding: 12px;
+
+            border: 1px solid #eeeeF2;
+        }
+
+
+        /* =========================================================
+           HIDDEN
+        ========================================================= */
+
+        .hidden-force {
+            display: none !important;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="app-shell">
+
+
+<!-- ============================================================
+     WELCOME
+============================================================ -->
+
+<div
+    id="welcome-screen"
+    class="fixed inset-0 z-[500] bg-white flex flex-col"
+>
+
+    <div
+        class="absolute inset-0 pointer-events-none"
+        style="
+            background:
+                radial-gradient(
+                    circle at 50% 25%,
+                    rgba(255,55,95,.10),
+                    transparent 38%
+                );
+        "
+    ></div>
+
+
+    <div
+        class="relative flex-1 flex flex-col justify-center px-7"
+    >
+
+        <div class="max-w-md mx-auto w-full text-center">
+
+            <div
+                class="w-24 h-24 mx-auto rounded-[30px] overflow-hidden shadow-xl mb-7"
+            >
+
+                <img
+                    src="assets/dani.jpg"
+                    alt="Dani"
+                    class="w-full h-full object-cover"
+                    onerror="
+                        this.onerror=null;
+                        this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=85';
+                    "
+                >
+
+            </div>
+
+
+            <p
+                class="text-[11px] font-bold uppercase tracking-[.18em] text-rose-500 mb-2"
+            >
+                Uma experiência feita para ti
+            </p>
+
+
+            <h1
+                class="text-[38px] leading-none font-black tracking-[-.04em]"
+            >
+                Dani Fitness
+            </h1>
+
+
+            <p
+                class="text-[15px] leading-relaxed text-[#6e6e73] mt-5 max-w-sm mx-auto"
+            >
+                8 semanas. Um objetivo.
+                <br>
+                E alguém a torcer por ti em cada treino. ❤️
+            </p>
+
+
+            <div
+                class="ios-card mt-8 p-5 text-left"
+            >
+
+                <div class="flex gap-3">
+
+                    <div
+                        class="w-10 h-10 rounded-full bg-rose-50 flex items-center justify-center shrink-0"
+                    >
+                        ❤️
+                    </div>
+
+                    <div>
+
+                        <p class="text-sm font-bold">
+                            Uma coisa de cada vez.
+                        </p>
+
+                        <p class="text-xs text-[#6e6e73] mt-1 leading-relaxed">
+                            Não precisas de ser perfeita.
+                            Só precisas de continuar a aparecer.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="h-px bg-black/5 my-4"
+                ></div>
+
+
+                <div class="flex items-center justify-between">
+
+                    <span
+                        class="text-xs text-[#6e6e73]"
+                    >
+                        Desafio
+                    </span>
+
+                    <span
+                        class="font-bold text-sm"
+                    >
+                        8 semanas · 32 treinos
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                onclick="iniciarApp()"
+                class="ios-button w-full mt-5 bg-[#111111] text-white font-bold py-4 rounded-2xl shadow-xl text-sm"
+            >
+                Começar o meu desafio
+            </button>
+
+
+            <p
+                class="text-[10px] text-[#8e8e93] mt-5"
+            >
+                Feito com ❤️ pelo Tiago
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ============================================================
+     MAIN APP
+============================================================ -->
+
+<div
+    id="main-app"
+    class="hidden"
+>
+
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+
+<header
+    class="ios-glass sticky top-0 z-30 safe-top"
+>
+
+    <div
+        class="px-5 py-3.5 flex items-center justify-between"
+    >
+
+        <div>
+
+            <p
+                id="header-greeting"
+                class="text-[11px] font-semibold text-[#8e8e93]"
+            >
+                BOM DIA, DANI
+            </p>
+
+            <h1
+                class="text-[20px] font-black tracking-[-.03em]"
+            >
+                O teu desafio ❤️
+            </h1>
+
+        </div>
+
+
+        <div class="flex items-center gap-2">
+
+            <button
+                onclick="abrirAchievements()"
+                class="ios-button w-10 h-10 rounded-full bg-white border border-black/5 shadow-sm flex items-center justify-center"
+            >
+
+                <i
+                    data-lucide="trophy"
+                    class="w-[18px] h-[18px] text-[#ff9500]"
+                ></i>
+
+            </button>
+
+
+            <div
+                class="ios-pill text-xs font-bold text-[#ff375f]"
+            >
+
+                🔥
+                <span id="header-streak">
+                    0
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<main
+    class="px-4 pb-28 pt-4"
+>
+
+
+<!-- ============================================================
+     HOME PAGE
+============================================================ -->
+
+<section
+    id="page-home"
+    class="page active space-y-4"
+>
+
+
+<!-- HERO -->
+<div
+    class="hero-photo shadow-lg fade-up"
+>
+
+    <img
+        src="assets/dani.jpg"
+        alt="Dani"
+        onerror="
+            this.onerror=null;
+            this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=85';
+        "
+    >
+
+
+    <div
+        class="absolute left-5 right-5 bottom-5 z-10 text-white"
+    >
+
+        <p
+            class="text-[10px] uppercase font-bold tracking-[.16em] text-white/70"
+        >
+            SEMANA
+            <span id="hero-week-number">1</span>
+            DE 8
+        </p>
+
+
+        <h2
+            id="hero-title"
+            class="text-[28px] leading-none font-black tracking-[-.04em] mt-1"
+        >
+            A começar 💪
+        </h2>
+
+
+        <p
+            id="hero-subtitle"
+            class="text-xs text-white/80 mt-2"
+        >
+            Vamos fazer isto juntas.
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<!-- TODAY MESSAGE -->
+<div
+    class="ios-card p-5 fade-up"
+>
+
+    <div class="flex items-center gap-2 mb-3">
+
+        <div
+            class="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center"
+        >
+            💌
+        </div>
+
+        <div>
+
+            <p
+                class="text-[10px] font-bold uppercase tracking-wider text-[#8e8e93]"
+            >
+                Mensagem do Tiago
+            </p>
+
+            <p
+                id="daily-message-label"
+                class="text-[10px] text-[#8e8e93]"
+            >
+                Hoje
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <p
+        id="daily-message"
+        class="text-[16px] leading-relaxed font-semibold tracking-[-.01em]"
+    >
+        Não precisas de ser perfeita. Só precisas de continuar.
+    </p>
+
+
+    <p
+        class="text-[10px] text-[#8e8e93] mt-3"
+    >
+        — Tiago ❤️
+    </p>
+
+</div>
+
+
+
+<!-- TODAY WORKOUT -->
+<div
+    class="ios-card p-5 fade-up"
+>
+
+    <div class="flex justify-between items-start">
+
+        <div>
+
+            <span
+                id="home-workout-day"
+                class="text-[10px] font-bold uppercase tracking-wider text-rose-500"
+            >
+                HOJE
+            </span>
+
+            <h2
+                id="home-workout-name"
+                class="text-[21px] font-black tracking-[-.03em] mt-1"
+            >
+                Corrida Intervalada
+            </h2>
+
+            <p
+                id="home-workout-meta"
+                class="text-xs text-[#8e8e93] mt-1"
+            >
+                ~4 km
+            </p>
+
+        </div>
+
+
+        <div
+            id="home-workout-icon"
+            class="w-11 h-11 rounded-2xl bg-rose-50 flex items-center justify-center text-xl"
+        >
+            🏃‍♀️
+        </div>
+
+    </div>
+
+
+    <button
+        onclick="irParaPlano()"
+        class="ios-button w-full mt-5 bg-[#111111] text-white font-bold py-3.5 rounded-2xl text-sm"
+    >
+        Ver treino
+    </button>
+
+</div>
+
+
+
+<!-- CHALLENGE PROGRESS -->
+<div
+    class="ios-card p-5 fade-up"
+>
+
+    <div class="flex justify-between items-end">
+
+        <div>
+
+            <p
+                class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]"
+            >
+                O teu progresso
+            </p>
+
+            <h2
+                id="home-progress-title"
+                class="text-[18px] font-black mt-1"
+            >
+                0 de 32 treinos
+            </h2>
+
+        </div>
+
+
+        <span
+            id="home-progress-percent"
+            class="text-[12px] font-bold text-rose-500"
+        >
+            0%
+        </span>
+
+    </div>
+
+
+    <div class="progress-track mt-4">
+
+        <div
+            id="home-progress-bar"
+            class="progress-fill"
+            style="width:0%"
+        ></div>
+
+    </div>
+
+
+    <div
+        class="grid grid-cols-3 gap-2 mt-4"
+    >
+
+        <div class="stat-card text-center">
+
+            <div
+                id="home-stat-runs"
+                class="text-[18px] font-black text-[#ff375f]"
+            >
+                0
+            </div>
+
+            <div
+                class="text-[9px] uppercase font-bold tracking-wider text-[#8e8e93]"
+            >
+                Corridas
+            </div>
+
+        </div>
+
+
+        <div class="stat-card text-center">
+
+            <div
+                id="home-stat-strength"
+                class="text-[18px] font-black text-[#007aff]"
+            >
+                0
+            </div>
+
+            <div
+                class="text-[9px] uppercase font-bold tracking-wider text-[#8e8e93]"
+            >
+                Força
+            </div>
+
+        </div>
+
+
+        <div class="stat-card text-center">
+
+            <div
+                id="home-stat-glutes"
+                class="text-[18px] font-black text-[#af52de]"
+            >
+                0
+            </div>
+
+            <div
+                class="text-[9px] uppercase font-bold tracking-wider text-[#8e8e93]"
+            >
+                Glúteos
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- WEEK MEDALS -->
+<div
+    class="ios-card p-5 fade-up"
+>
+
+    <div class="flex items-center justify-between mb-4">
+
+        <div>
+
+            <p
+                class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]"
+            >
+                Coleção
+            </p>
+
+            <h2
+                class="text-[18px] font-black mt-1"
+            >
+                Medalhas das semanas
+            </h2>
+
+        </div>
+
+
+        <span
+            id="medals-count"
+            class="text-xs font-bold text-[#8e8e93]"
+        >
+            0/8
+        </span>
+
+    </div>
+
+
+    <div
+        id="weekly-medals"
+        class="grid grid-cols-4 gap-4"
+    ></div>
+
+</div>
+
+
+
+<!-- NEXT GOAL -->
+<div
+    id="next-goal-card"
+    class="rounded-[24px] bg-[#111111] text-white p-5 shadow-xl"
+>
+
+    <div class="flex items-center gap-3">
+
+        <div
+            id="next-goal-icon"
+            class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center text-xl"
+        >
+            🎯
+        </div>
+
+        <div>
+
+            <p
+                class="text-[10px] uppercase tracking-wider font-bold text-white/45"
+            >
+                Próximo objetivo
+            </p>
+
+            <h3
+                id="next-goal-title"
+                class="font-black text-[16px] mt-1"
+            >
+                Completar esta semana
+            </h3>
+
+        </div>
+
+    </div>
+
+
+    <p
+        id="next-goal-text"
+        class="text-xs text-white/60 leading-relaxed mt-4"
+    >
+        Ainda faltam 4 treinos para desbloqueares a medalha desta semana.
+    </p>
+
+</div>
+
+</section>
+
+
+
+<!-- ============================================================
+     PLAN PAGE
+============================================================ -->
+
+<section
+    id="page-plan"
+    class="page space-y-4"
+>
+
+
+<div
+    class="ios-card p-5"
+>
+
+    <div class="flex justify-between items-center">
+
+        <div>
+
+            <p
+                class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]"
+            >
+                Plano semanal
+            </p>
+
+            <h2
+                class="text-[22px] font-black tracking-[-.03em] mt-1"
+            >
+                Esta semana
+            </h2>
+
+        </div>
+
+
+        <button
+            onclick="irParaHoje()"
+            class="ios-pill text-[10px] font-bold"
+        >
+            Hoje
+        </button>
+
+    </div>
+
+
+    <p
+        id="calendar-range"
+        class="text-xs text-[#8e8e93] mt-2"
+    ></p>
+
+
+    <div
+        id="calendar-grid"
+        class="grid grid-cols-7 gap-1.5 mt-5"
+    ></div>
+
+
+    <div
+        id="week-status"
+        class="mt-4 pt-4 border-t border-black/5 text-xs text-[#6e6e73] text-center"
+    ></div>
+
+</div>
+
+
+
+<!-- SELECTED WORKOUT -->
+
+<div
+    class="ios-card p-5"
+>
+
+    <div class="flex justify-between items-start border-b border-black/5 pb-4">
+
+        <div>
+
+            <p
+                id="workout-day-title"
+                class="text-[10px] uppercase tracking-wider font-bold text-rose-500"
+            >
+                SEGUNDA
+            </p>
+
+            <h2
+                id="workout-name"
+                class="text-[22px] font-black tracking-[-.03em] mt-1"
+            >
+                Corrida Intervalada
+            </h2>
+
+        </div>
+
+
+        <span
+            id="workout-duration"
+            class="ios-pill text-[10px] font-bold"
+        >
+            ~4 km
+        </span>
+
+    </div>
+
+
+    <div
+        id="late-warning"
+        class="hidden mt-4 bg-orange-50 border border-orange-100 rounded-2xl p-3 text-xs text-orange-900 leading-relaxed"
+    >
+        ⏰
+        <b>Treino em atraso.</b>
+        Podes recuperá-lo agora. Não precisas de esperar pelo dia original.
+    </div>
+
+
+    <div
+        id="exercises-container"
+        class="space-y-4 mt-5"
+    ></div>
+
+
+    <button
+        id="complete-button"
+        onclick="concluirTreino()"
+        class="ios-button w-full mt-5 bg-[#34c759] text-white font-bold py-4 rounded-2xl text-sm shadow-lg"
+    >
+        ✅ Marcar treino como concluído
+    </button>
+
+</div>
+
+
+</section>
+
+
+
+<!-- ============================================================
+     ACHIEVEMENTS PAGE
+============================================================ -->
+
+<section
+    id="page-achievements"
+    class="page space-y-4"
+>
+
+
+<div
+    class="ios-card p-5"
+>
+
+    <p
+        class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]"
+    >
+        Conquistas
+    </p>
+
+    <h2
+        class="text-[24px] font-black tracking-[-.04em] mt-1"
+    >
+        Tudo o que já conquistaste 🏆
+    </h2>
+
+    <p
+        id="achievement-summary"
+        class="text-xs text-[#8e8e93] mt-2"
+    >
+        0 de 6 desbloqueadas
+    </p>
+
+</div>
+
+
+<div
+    id="achievements-list"
+    class="space-y-3"
+></div>
+
+
+</section>
+
+
+
+</main>
+
+
+
+<!-- ============================================================
+     BOTTOM NAVIGATION
+============================================================ -->
+
+<nav
+    class="bottom-nav"
+>
+
+    <div class="flex items-center justify-around">
+
+        <button
+            id="nav-home"
+            onclick="changePage('home')"
+            class="nav-button active"
+        >
+
+            <i
+                data-lucide="house"
+                class="nav-icon"
+            ></i>
+
+            Início
+
+        </button>
+
+
+        <button
+            id="nav-plan"
+            onclick="changePage('plan')"
+            class="nav-button"
+        >
+
+            <i
+                data-lucide="calendar-days"
+                class="nav-icon"
+            ></i>
+
+            Plano
+
+        </button>
+
+
+        <button
+            id="nav-achievements"
+            onclick="changePage('achievements')"
+            class="nav-button"
+        >
+
+            <i
+                data-lucide="medal"
+                class="nav-icon"
+            ></i>
+
+            Conquistas
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+</div>
+
+
+
+<!-- ============================================================
+     ACHIEVEMENTS MODAL
+============================================================ -->
+
+<div
+    id="achievements-modal"
+    class="modal-backdrop hidden-force"
+    onclick="fecharAchievements(event)"
+>
+
+    <div
+        class="modal-sheet"
+        onclick="event.stopPropagation()"
+    >
+
+        <div class="w-10 h-1 rounded-full bg-black/10 mx-auto mb-5"></div>
+
+
+        <div class="flex items-center justify-between mb-5">
+
+            <div>
+
+                <p
+                    class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]"
+                >
+                    Coleção
+                </p>
+
+                <h2
+                    class="text-[22px] font-black"
+                >
+                    Conquistas 🏆
+                </h2>
+
+            </div>
+
+
+            <button
+                onclick="fecharAchievements()"
+                class="w-9 h-9 rounded-full bg-[#f2f2f7] flex items-center justify-center"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <div
+            id="modal-achievements-list"
+            class="space-y-3"
+        ></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ============================================================
+     WEEK COMPLETE CELEBRATION
+============================================================ -->
+
+<div
+    id="week-complete-overlay"
+>
+
+    <div
+        class="celebration-card"
+    >
+
+        <div
+            class="text-[11px] font-bold tracking-[.18em] uppercase text-rose-500"
+        >
+            Semana concluída
+        </div>
+
+
+        <div
+            id="celebration-medal"
+            class="medal medal-animation mx-auto mt-5 text-3xl"
+        >
+            🏅
+        </div>
+
+
+        <h1
+            id="celebration-title"
+            class="text-[34px] leading-none font-black tracking-[-.05em] mt-6"
+        >
+            Conseguiste! ❤️
+        </h1>
+
+
+        <p
+            id="celebration-text"
+            class="text-sm text-[#6e6e73] leading-relaxed mt-4 max-w-sm mx-auto"
+        >
+            Completaste os 4 treinos desta semana.
+        </p>
+
+
+        <div
+            class="ios-card mt-6 p-4 text-left"
+        >
+
+            <div class="flex items-center gap-3">
+
+                <div
+                    class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center"
+                >
+                    🏆
+                </div>
+
+                <div>
+
+                    <p
+                        class="text-xs text-[#8e8e93]"
+                    >
+                        Nova conquista
+                    </p>
+
+                    <p
+                        id="celebration-achievement"
+                        class="text-sm font-black"
+                    >
+                        Medalha da Semana 1
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            onclick="fecharCelebracao()"
+            class="ios-button w-full bg-[#111111] text-white font-bold py-4 rounded-2xl mt-6"
+        >
+            Continuar ❤️
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ============================================================
+     FINAL REWARD
+============================================================ -->
+
+<div
+    id="finale"
+>
+
+    <div
+        class="min-h-screen flex flex-col px-6 py-10"
+    >
+
+        <div
+            class="max-w-md mx-auto w-full flex-1 flex flex-col justify-center text-center"
+        >
+
+            <div
+                class="text-[10px] uppercase tracking-[.2em] font-bold text-amber-500"
+            >
+                Mission accomplished
+            </div>
+
+
+            <div
+                class="text-[64px] mt-5"
+            >
+                🏆
+            </div>
+
+
+            <h1
+                class="text-[40px] leading-none font-black tracking-[-.05em] mt-3"
+            >
+                Dani,
+                <br>
+                conseguiste.
+            </h1>
+
+
+            <p
+                class="text-base text-[#6e6e73] mt-5 leading-relaxed"
+            >
+                8 semanas.
+                <br>
+                32 treinos.
+                <br>
+                Uma versão tua ainda mais forte.
+            </p>
+
+
+            <div
+                class="ios-card p-6 text-left mt-8"
+            >
+
+                <p
+                    class="text-[16px] leading-relaxed font-semibold"
+                >
+                    Não foi sobre seres perfeita.
+                    Foi sobre apareceres mesmo nos dias em que não apetecia.
+                </p>
+
+
+                <p
+                    class="text-[16px] leading-relaxed font-semibold mt-4"
+                >
+                    Eu vi o teu esforço desde o primeiro treino até aqui.
+                </p>
+
+
+                <p
+                    class="text-[18px] leading-relaxed font-black mt-5"
+                >
+                    Estou muito orgulhoso de ti. ❤️
+                </p>
+
+
+                <p
+                    class="text-xs text-[#8e8e93] mt-4"
+                >
+                    — Tiago
+                </p>
+
+            </div>
+
+
+            <div
+                class="rounded-[26px] overflow-hidden mt-5 h-56 shadow-xl"
+            >
+
+                <img
+                    src="assets/final.jpg"
+                    alt="Tiago e Dani"
+                    class="w-full h-full object-cover"
+                    onerror="
+                        this.onerror=null;
+                        this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=900&q=85';
+                    "
+                >
+
+            </div>
+
+
+            <p
+                class="text-xs italic text-rose-500 mt-5"
+            >
+                "A verdadeira recompensa foi ver-te superar cada treino."
+            </p>
+
+        </div>
+
+
+        <button
+            onclick="fecharFinale()"
+            class="text-xs text-[#8e8e93] underline py-4"
+        >
+            Voltar à aplicação
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* ============================================================
+   DANI FITNESS
+   VERSION 5.0
+============================================================ */
+
+
+/* ============================================================
+   CONFIG
+============================================================ */
+
+const TOTAL_WEEKS = 8;
+
+const MANDATORY_DAYS = [
+    1, // Segunda
+    2, // Terça
+    4, // Quinta
+    5  // Sexta
+];
+
+const MANDATORY_PER_WEEK = 4;
+
+const TOTAL_TARGET = 32;
+
+const MS_DAY =
+    1000 *
+    60 *
+    60 *
+    24;
+
+
+const WEEK_NAMES = [
+
+    "A começar 💪",
+
+    "A ganhar ritmo 🔥",
+
+    "Consistente ✨",
+
+    "A evoluir 🚀",
+
+    "Mais forte 🍑",
+
+    "Determinada 🔥",
+
+    "Quase lá ⭐",
+
+    "Finalista 🏆"
+
+];
+
+
+const WEEK_MEDALS = [
+
+    "🌱",
+    "🔥",
+    "✨",
+    "🚀",
+    "🍑",
+    "💪",
+    "⭐",
+    "🏆"
+
+];
+
+
+const DAILY_MESSAGES = [
+
+    "Não precisas de ser perfeita. Só precisas de continuar. ❤️",
+
+    "Um treino de cada vez. Eu acredito em ti mesmo quando tu duvidas. ❤️",
+
+    "Hoje não precisas de motivação. Só precisas de começar. 💪",
+
+    "Estou orgulhoso de ti por cada vez que escolhes cuidar de ti. ❤️",
+
+    "Não compares o teu início com o caminho de ninguém. O teu ritmo é suficiente. 🌷",
+
+    "A versão mais forte de ti está a ser construída nos dias normais. ✨",
+
+    "Mais importante do que o resultado é a pessoa que estás a tornar-te. ❤️",
+
+    "Já viste até onde chegaste? Continua. Está quase. 🏆",
+
+    "Hoje é mais um daqueles dias em que vais provar a ti própria que consegues. 🔥",
+
+    "Não tens de gostar de todos os treinos. Só tens de não desistir de ti. ❤️",
+
+    "Cada repetição conta. Cada corrida conta. Cada pequena escolha conta. 💗",
+
+    "Estou aqui a torcer por ti. Agora vai lá fazer o teu treino. 😌❤️"
+
+];
+
+
+/* ============================================================
+   TRAINING PLAN
+============================================================ */
+
+const TREINOS = {
+
+    1: {
+
+        dia: "SEGUNDA-FEIRA",
+
+        nome: "Corrida Intervalada 🏃‍♀️",
+
+        duracao: "~4 km",
+
+        type: "run",
+
+        mandatory: true,
+
+        rest: false,
+
+        icon: "🏃‍♀️",
+
+        ex: [
+
+            {
+
+                nome: "Corrida Intervalada",
+
+                desc: "2 min a correr / 2 min a andar · repetir até ~4 km",
+
+                img: "assets/exercises/corrida.gif",
+
+                tip: "Não precisas de correr rápido. O objetivo é acabar inteira. ❤️",
+
+                avoid: "Começar demasiado depressa nos primeiros minutos."
+
+            }
+
+        ]
+
+    },
+
+
+    2: {
+
+        dia: "TERÇA-FEIRA",
+
+        nome: "Pernas + Glúteos 🍑",
+
+        duracao: "~30 min",
+
+        type: "glutes",
+
+        mandatory: true,
+
+        rest: false,
+
+        icon: "🍑",
+
+        ex: [
+
+            {
+
+                nome: "Agachamento",
+
+                desc: "3 séries × 12–15 repetições",
+
+                img: "assets/exercises/squat.gif",
+
+                tip: "Empurra o chão para subir e mantém o peito aberto.",
+
+                avoid: "Deixar os joelhos cair para dentro."
+
+            },
+
+            {
+
+                nome: "Glute Bridge",
+
+                desc: "3 séries × 15–20 repetições",
+
+                img: "assets/exercises/glute-bridge.gif",
+
+                tip: "Aperta o glúteo no topo durante 1 segundo. 🍑",
+
+                avoid: "Subir usando demasiado a lombar."
+
+            },
+
+            {
+
+                nome: "Reverse Lunge",
+
+                desc: "3 séries × 10 cada perna",
+
+                img: "assets/exercises/reverse-lunge.gif",
+
+                tip: "Passo para trás e desce de forma controlada.",
+
+                avoid: "Bater com o joelho no chão."
+
+            },
+
+            {
+
+                nome: "Romanian Deadlift com Mochila",
+
+                desc: "3 séries × 12–15",
+
+                img: "assets/exercises/rdl.gif",
+
+                tip: "Leva a anca para trás mantendo as costas neutras.",
+
+                avoid: "Curvar as costas."
+
+            },
+
+            {
+
+                nome: "Step-up",
+
+                desc: "3 séries × 10 cada perna",
+
+                img: "assets/exercises/step-up.gif",
+
+                tip: "Usa um degrau ou cadeira muito estável.",
+
+                avoid: "Dar demasiado impulso com a perna de baixo."
+
+            },
+
+            {
+
+                nome: "Abdução Deitada",
+
+                desc: "3 séries × 15–20 cada lado",
+
+                img: "assets/exercises/abduction.gif",
+
+                tip: "Controla tanto a subida como a descida.",
+
+                avoid: "Rodar a anca para trás."
+
+            },
+
+            {
+
+                nome: "Prancha",
+
+                desc: "3 séries × 30–45 segundos",
+
+                img: "assets/exercises/plank.gif",
+
+                tip: "Contrai o core e os glúteos.",
+
+                avoid: "Deixar a bacia cair."
+
+            }
+
+        ]
+
+    },
+
+
+    3: {
+
+        dia: "QUARTA-FEIRA",
+
+        nome: "Recuperação Ativa 🚶‍♀️",
+
+        duracao: "30–45 min",
+
+        type: "recovery",
+
+        mandatory: false,
+
+        rest: true,
+
+        icon: "🚶‍♀️",
+
+        ex: [
+
+            {
+
+                nome: "Caminhada ou descanso",
+
+                desc: "30–45 minutos de caminhada leve ou descanso total.",
+
+                img: "assets/exercises/caminhada.gif",
+
+                tip: "Se estiveres cansada, descansar também faz parte do plano.",
+
+                avoid: "Forçar quando o corpo pede recuperação."
+
+            }
+
+        ]
+
+    },
+
+
+    4: {
+
+        dia: "QUINTA-FEIRA",
+
+        nome: "Corrida Intervalada 🏃‍♀️",
+
+        duracao: "~4 km",
+
+        type: "run",
+
+        mandatory: true,
+
+        rest: false,
+
+        icon: "🏃‍♀️",
+
+        ex: [
+
+            {
+
+                nome: "Corrida Adaptável",
+
+                desc: "2 min a correr / 2 min a andar · se necessário 1:30 / 2:30",
+
+                img: "assets/exercises/corrida.gif",
+
+                tip: "O objetivo é consistência, não bater recordes.",
+
+                avoid: "Comparar o ritmo com a corrida anterior."
+
+            }
+
+        ]
+
+    },
+
+
+    5: {
+
+        dia: "SEXTA-FEIRA",
+
+        nome: "Corpo Inteiro 💪",
+
+        duracao: "~30 min",
+
+        type: "strength",
+
+        mandatory: true,
+
+        rest: false,
+
+        icon: "💪",
+
+        ex: [
+
+            {
+
+                nome: "Agachamento",
+
+                desc: "3 séries × 12–15",
+
+                img: "assets/exercises/squat.gif",
+
+                tip: "Controla a descida e sobe com força.",
+
+                avoid: "Fazer a descida descontroladamente."
+
+            },
+
+            {
+
+                nome: "Flexões Inclinadas",
+
+                desc: "3 séries × 8–12",
+
+                img: "assets/exercises/pushup.gif",
+
+                tip: "Mãos apoiadas numa superfície firme.",
+
+                avoid: "Deixar o pescoço cair."
+
+            },
+
+            {
+
+                nome: "Remada com Mochila",
+
+                desc: "3 séries × 12–15",
+
+                img: "assets/exercises/row.gif",
+
+                tip: "Puxa a mochila na direção do umbigo.",
+
+                avoid: "Usar balanço do corpo."
+
+            },
+
+            {
+
+                nome: "Romanian Deadlift",
+
+                desc: "3 séries × 12–15",
+
+                img: "assets/exercises/rdl.gif",
+
+                tip: "Sente o alongamento na parte de trás das pernas.",
+
+                avoid: "Arredondar as costas."
+
+            },
+
+            {
+
+                nome: "Glute Bridge",
+
+                desc: "3 séries × 15–20",
+
+                img: "assets/exercises/glute-bridge.gif",
+
+                tip: "Força através dos calcanhares.",
+
+                avoid: "Compensar com a lombar."
+
+            },
+
+            {
+
+                nome: "Shoulder Press",
+
+                desc: "3 séries × 10–15",
+
+                img: "assets/exercises/press.gif",
+
+                tip: "Empurra os pesos diretamente para cima.",
+
+                avoid: "Arquear demasiado as costas."
+
+            },
+
+            {
+
+                nome: "Dead Bug",
+
+                desc: "3 séries × 10 cada lado",
+
+                img: "assets/exercises/deadbug.gif",
+
+                tip: "Mantém a lombar colada ao chão.",
+
+                avoid: "Perder o controlo do core."
+
+            }
+
+        ]
+
+    },
+
+
+    6: {
+
+        dia: "SÁBADO",
+
+        nome: "Glúteos + Abs 🌟",
+
+        duracao: "~25 min",
+
+        type: "glutes",
+
+        mandatory: false,
+
+        rest: false,
+
+        icon: "🍑",
+
+        ex: [
+
+            {
+
+                nome: "Hip Thrust / Glute Bridge",
+
+                desc: "4 séries × 12–15",
+
+                img: "assets/exercises/hipthrust.gif",
+
+                tip: "Opcional. Faz apenas se estiveres bem.",
+
+                avoid: "Forçar se estiveres cansada."
+
+            },
+
+            {
+
+                nome: "Bulgarian Split Squat",
+
+                desc: "3 séries × 8–10 cada perna",
+
+                img: "assets/exercises/bulgarian.gif",
+
+                tip: "Mantém o movimento lento e controlado.",
+
+                avoid: "Descer sem controlo."
+
+            },
+
+            {
+
+                nome: "Crunch + Prancha",
+
+                desc: "3 séries × 15 + 30–45s",
+
+                img: "assets/exercises/crunch.gif",
+
+                tip: "Concentra-te na contração abdominal.",
+
+                avoid: "Puxar a cabeça com as mãos."
+
+            }
+
+        ]
+
+    },
+
+
+    0: {
+
+        dia: "DOMINGO",
+
+        nome: "Descanso Total 😴",
+
+        duracao: "Dia todo",
+
+        type: "recovery",
+
+        mandatory: false,
+
+        rest: true,
+
+        icon: "😴",
+
+        ex: []
+
+    }
+
+};
+
+
+/* ============================================================
+   ACHIEVEMENTS
+============================================================ */
+
+const ACHIEVEMENTS = [
+
+    {
+
+        id: "first",
+
+        title: "Primeiros Passos",
+
+        emoji: "🌱",
+
+        desc: "Completar o primeiro treino.",
+
+        req: s => s.totalCompleted >= 1
+
+    },
+
+    {
+
+        id: "five",
+
+        title: "Não Desisti",
+
+        emoji: "💪",
+
+        desc: "Completar 5 treinos.",
+
+        req: s => s.totalCompleted >= 5
+
+    },
+
+    {
+
+        id: "runner",
+
+        title: "Runner Dani",
+
+        emoji: "🏃‍♀️",
+
+        desc: "Completar 5 corridas.",
+
+        req: s => s.runs >= 5
+
+    },
+
+    {
+
+        id: "booty",
+
+        title: "Booty Builder",
+
+        emoji: "🍑",
+
+        desc: "Completar 8 treinos de pernas/glúteos.",
+
+        req: s => s.glutes >= 8
+
+    },
+
+    {
+
+        id: "streak",
+
+        title: "Em Chamas",
+
+        emoji: "🔥",
+
+        desc: "Atingir um streak de 7 dias.",
+
+        req: s => s.highestStreak >= 7
+
+    },
+
+    {
+
+        id: "eight",
+
+        title: "Dani Nível 8",
+
+        emoji: "🏆",
+
+        desc: "Completar as 8 semanas.",
+
+        req: s => s.completedWeeks >= 8
+
+    }
+
+];
+
+
+/* ============================================================
+   STATE
+============================================================ */
+
+let state = JSON.parse(
+    localStorage.getItem("dani_fitness_premium_v5")
+) || {
+
+    seenWelcome: false,
+
+    startDate: null,
+
+    completedDays: {},
+
+    unlockedAchievements: [],
+
+    completedWeeks: [],
+
+    highestStreak: 0,
+
+    selectedDateStr: null,
+
+    lastCelebratedWeek: null
+
+};
+
+
+/* ============================================================
+   SAVE
+============================================================ */
+
+function saveState() {
+
+    localStorage.setItem(
+        "dani_fitness_premium_v5",
+        JSON.stringify(state)
+    );
+
+}
+
+
+/* ============================================================
+   DATE HELPERS
+============================================================ */
+
+function dateString(date = new Date()) {
+
+    const y = date.getFullYear();
+
+    const m = String(
+        date.getMonth() + 1
+    ).padStart(2, "0");
+
+    const d = String(
+        date.getDate()
+    ).padStart(2, "0");
+
+    return `${y}-${m}-${d}`;
+
+}
+
+
+function parseDate(str) {
+
+    const [y,m,d] =
+        str.split("-").map(Number);
+
+    return new Date(y,m-1,d);
+
+}
+
+
+function monday(date) {
+
+    const d = new Date(date);
+
+    const day = d.getDay();
+
+    const diff =
+        day === 0
+            ? -6
+            : 1 - day;
+
+    d.setDate(
+        d.getDate() + diff
+    );
+
+    d.setHours(0,0,0,0);
+
+    return d;
+
+}
+
+
+function weekDays(dateStr) {
+
+    const base =
+        monday(parseDate(dateStr));
+
+    const result = [];
+
+    for(let i=0;i<7;i++) {
+
+        const d = new Date(base);
+
+        d.setDate(
+            base.getDate() + i
+        );
+
+        result.push(
+            dateString(d)
+        );
+
+    }
+
+    return result;
+
+}
+
+
+function formatDate(str) {
+
+    const d = parseDate(str);
+
+    return d.toLocaleDateString(
+        "pt-PT",
+        {
+            day: "numeric",
+            month: "short"
+        }
+    )
+    .replace(".","")
+    .toUpperCase();
+
+}
+
+
+/* ============================================================
+   CHALLENGE
+============================================================ */
+
+function ensureStartDate() {
+
+    if(!state.startDate) return;
+
+    const normalized =
+        dateString(
+            monday(
+                parseDate(state.startDate)
+            )
+        );
+
+    state.startDate = normalized;
+
+}
+
+
+function currentWeek() {
+
+    if(!state.startDate)
+        return 1;
+
+    const start =
+        parseDate(state.startDate);
+
+    const today =
+        parseDate(dateString());
+
+    const diff =
+        Math.floor(
+            (today - start) /
+            MS_DAY
+        );
+
+    return Math.min(
+        TOTAL_WEEKS,
+        Math.max(
+            1,
+            Math.floor(diff / 7) + 1
+        )
+    );
+
+}
+
+
+function getWeekIndexForDate(dateStr) {
+
+    if(!state.startDate)
+        return 0;
+
+    const start =
+        parseDate(state.startDate);
+
+    const date =
+        parseDate(dateStr);
+
+    const diff =
+        Math.floor(
+            (date - start) / MS_DAY
+        );
+
+    return Math.floor(diff / 7);
+
+}
+
+
+/* ============================================================
+   WEEK STATS
+============================================================ */
+
+function getWeekMandatoryCount(index) {
+
+    if(!state.startDate)
+        return 0;
+
+    let count = 0;
+
+    const start =
+        parseDate(state.startDate);
+
+    for(let i=0;i<7;i++) {
+
+        const d =
+            new Date(start);
+
+        d.setDate(
+            start.getDate() +
+            index * 7 +
+            i
+        );
+
+        const str =
+            dateString(d);
+
+        const day =
+            d.getDay();
+
+        if(
+            MANDATORY_DAYS.includes(day) &&
+            state.completedDays[str]
+        ) {
+
+            count++;
+
+        }
+
+    }
+
+    return count;
+
+}
+
+
+function isWeekComplete(index) {
+
+    return getWeekMandatoryCount(index)
+        >= MANDATORY_PER_WEEK;
+
+}
+
+
+function countCompletedWeeks() {
+
+    let count = 0;
+
+    for(
+        let i=0;
+        i<TOTAL_WEEKS;
+        i++
+    ) {
+
+        if(
+            isWeekComplete(i)
+        ) {
+
+            count++;
+
+        }
+
+    }
+
+    return count;
+
+}
+
+
+function totalMandatoryCompleted() {
+
+    let count = 0;
+
+    Object.keys(
+        state.completedDays
+    ).forEach(dateStr => {
+
+        const day =
+            parseDate(dateStr).getDay();
+
+        if(
+            MANDATORY_DAYS.includes(day)
+        ) {
+
+            count++;
+
+        }
+
+    });
+
+    return Math.min(
+        TOTAL_TARGET,
+        count
+    );
+
+}
+
+
+/* ============================================================
+   STREAK
+============================================================ */
+
+function calculateStreak() {
+
+    let streak = 0;
+
+    const today =
+        parseDate(dateString());
+
+    let check =
+        new Date(today);
+
+    if(
+        !state.completedDays[
+            dateString(check)
+        ]
+    ) {
+
+        check.setDate(
+            check.getDate() - 1
+        );
+
+    }
+
+    while(
+        state.completedDays[
+            dateString(check)
+        ]
+    ) {
+
+        streak++;
+
+        check.setDate(
+            check.getDate() - 1
+        );
+
+    }
+
+    if(
+        streak >
+        state.highestStreak
+    ) {
+
+        state.highestStreak =
+            streak;
+
+    }
+
+    return streak;
+
+}
+
+
+/* ============================================================
+   STATS
+============================================================ */
+
+function getStats() {
+
+    let runs = 0;
+
+    let strength = 0;
+
+    let glutes = 0;
+
+    const total =
+        Object.keys(
+            state.completedDays
+        ).length;
+
+    Object.values(
+        state.completedDays
+    ).forEach(item => {
+
+        if(item.type === "run")
+            runs++;
+
+        if(item.type === "strength")
+            strength++;
+
+        if(item.type === "glutes")
+            glutes++;
+
+    });
+
+    return {
+
+        runs,
+
+        strength,
+
+        glutes,
+
+        total,
+
+        completedWeeks:
+            countCompletedWeeks(),
+
+        mandatory:
+            totalMandatoryCompleted(),
+
+        highestStreak:
+            state.highestStreak
+
+    };
+
+}
+
+
+/* ============================================================
+   PAGE NAVIGATION
+============================================================ */
+
+function changePage(page) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(el => {
+
+            el.classList.remove("active");
+
+        });
+
+
+    const target =
+        document.getElementById(
+            `page-${page}`
+        );
+
+    if(target)
+        target.classList.add("active");
+
+
+    document
+        .querySelectorAll(".nav-button")
+        .forEach(el => {
+
+            el.classList.remove("active");
+
+        });
+
+
+    const nav =
+        document.getElementById(
+            `nav-${page}`
+        );
+
+    if(nav)
+        nav.classList.add("active");
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+
+    if(page === "plan")
+        renderPlan();
+
+    if(page === "achievements")
+        renderAchievements();
+
+}
+
+
+function irParaPlano() {
+
+    changePage("plan");
+
+}
+
+
+function irParaHoje() {
+
+    state.selectedDateStr =
+        dateString();
+
+    saveState();
+
+    renderPlan();
+
+}
+
+
+/* ============================================================
+   WELCOME
+============================================================ */
+
+function iniciarApp() {
+
+    state.seenWelcome = true;
+
+    if(!state.startDate) {
+
+        state.startDate =
+            dateString(
+                monday(
+                    new Date()
+                )
+            );
+
+    }
+
+    ensureStartDate();
+
+    if(!state.selectedDateStr) {
+
+        state.selectedDateStr =
+            dateString();
+
+    }
+
+    saveState();
+
+    document
+        .getElementById(
+            "welcome-screen"
+        )
+        .classList.add("hidden");
+
+    document
+        .getElementById(
+            "main-app"
+        )
+        .classList.remove("hidden");
+
+    renderAll();
+
+}
+
+
+/* ============================================================
+   DAILY MESSAGE
+============================================================ */
+
+function renderDailyMessage() {
+
+    const today =
+        new Date();
+
+    const index =
+        today.getDate() %
+        DAILY_MESSAGES.length;
+
+    document
+        .getElementById(
+            "daily-message"
+        )
+        .innerText =
+            DAILY_MESSAGES[index];
+
+}
+
+
+/* ============================================================
+   GREETING
+============================================================ */
+
+function renderGreeting() {
+
+    const hour =
+        new Date().getHours();
+
+    let greeting =
+        "BOM DIA";
+
+    if(hour >= 12)
+        greeting = "BOA TARDE";
+
+    if(hour >= 19)
+        greeting = "BOA NOITE";
+
+    document
+        .getElementById(
+            "header-greeting"
+        )
+        .innerText =
+            `${greeting}, DANI`;
+
+}
+
+
+/* ============================================================
+   HOME
+============================================================ */
+
+function renderHome() {
+
+    const stats =
+        getStats();
+
+    const week =
+        currentWeek();
+
+    const progress =
+        Math.min(
+            100,
+            (
+                stats.mandatory /
+                TOTAL_TARGET
+            ) * 100
+        );
+
+
+    document
+        .getElementById(
+            "hero-week-number"
+        )
+        .innerText =
+            week;
+
+
+    document
+        .getElementById(
+            "hero-title"
+        )
+        .innerText =
+            WEEK_NAMES[
+                week - 1
+            ];
+
+
+    document
+        .getElementById(
+            "home-progress-title"
+        )
+        .innerText =
+            `${stats.mandatory} de ${TOTAL_TARGET} treinos`;
+
+
+    document
+        .getElementById(
+            "home-progress-percent"
+        )
+        .innerText =
+            `${Math.round(progress)}%`;
+
+
+    document
+        .getElementById(
+            "home-progress-bar"
+        )
+        .style.width =
+            `${progress}%`;
+
+
+    document
+        .getElementById(
+            "home-stat-runs"
+        )
+        .innerText =
+            stats.runs;
+
+
+    document
+        .getElementById(
+            "home-stat-strength"
+        )
+        .innerText =
+            stats.strength;
+
+
+    document
+        .getElementById(
+            "home-stat-glutes"
+        )
+        .innerText =
+            stats.glutes;
+
+
+    document
+        .getElementById(
+            "header-streak"
+        )
+        .innerText =
+            calculateStreak();
+
+
+    /* TODAY WORKOUT */
+
+    const today =
+        dateString();
+
+    const day =
+        parseDate(today)
+            .getDay();
+
+    const treino =
+        TREINOS[day];
+
+
+    document
+        .getElementById(
+            "home-workout-day"
+        )
+        .innerText =
+            treino.dia;
+
+
+    document
+        .getElementById(
+            "home-workout-name"
+        )
+        .innerText =
+            treino.nome;
+
+
+    document
+        .getElementById(
+            "home-workout-meta"
+        )
+        .innerText =
+            treino.duracao;
+
+
+    document
+        .getElementById(
+            "home-workout-icon"
+        )
+        .innerText =
+            treino.icon;
+
+
+    renderWeeklyMedals();
+
+    renderNextGoal();
+
+}
+
+
+/* ============================================================
+   WEEKLY MEDALS
+============================================================ */
+
+function renderWeeklyMedals() {
+
+    const container =
+        document.getElementById(
+            "weekly-medals"
+        );
+
+    container.innerHTML = "";
+
+    let unlocked = 0;
+
+
+    for(
+        let i=0;
+        i<TOTAL_WEEKS;
+        i++
+    ) {
+
+        const complete =
+            isWeekComplete(i);
+
+
+        if(complete)
+            unlocked++;
+
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "flex flex-col items-center gap-1.5";
+
+
+        item.innerHTML = `
+
+            <div
+                class="medal ${
+                    complete
+                        ? ""
+                        : "locked"
+                }"
+            >
+                ${
+                    complete
+                        ? WEEK_MEDALS[i]
+                        : "🔒"
+                }
+            </div>
+
+            <span
+                class="text-[9px] font-bold ${
+                    complete
+                        ? "text-[#111111]"
+                        : "text-[#8e8e93]"
+                }"
+            >
+                S${i+1}
+            </span>
+
+        `;
+
+
+        container.appendChild(item);
+
+    }
+
+
+    document
+        .getElementById(
+            "medals-count"
+        )
+        .innerText =
+            `${unlocked}/8`;
+
+}
+
+
+/* ============================================================
+   NEXT GOAL
+============================================================ */
+
+function renderNextGoal() {
+
+    const week =
+        currentWeek() - 1;
+
+    const completed =
+        getWeekMandatoryCount(
+            week
+        );
+
+    const remaining =
+        Math.max(
+            0,
+            4 - completed
+        );
+
+
+    const title =
+        document.getElementById(
+            "next-goal-title"
+        );
+
+    const text =
+        document.getElementById(
+            "next-goal-text"
+        );
+
+
+    if(
+        countCompletedWeeks() >= 8
+    ) {
+
+        title.innerText =
+            "Desafio concluído 🏆";
+
+        text.innerText =
+            "As 8 medalhas são tuas. Está na hora de abrir a mensagem do Tiago.";
+
+        return;
+
+    }
+
+
+    if(
+        remaining === 0
+    ) {
+
+        title.innerText =
+            "Semana concluída! 🏆";
+
+        text.innerText =
+            "Já ganhaste a medalha desta semana. Agora é continuar para a próxima.";
+
+    } else {
+
+        title.innerText =
+            `Faltam ${remaining} treino${
+                remaining === 1
+                    ? ""
+                    : "s"
+            }`;
+
+        text.innerText =
+            `Completa os restantes ${remaining} treino${
+                remaining === 1
+                    ? ""
+                    : "s"
+            } desta semana para desbloqueares a medalha.`;
+
+    }
+
+}
+
+
+/* ============================================================
+   PLAN / CALENDAR
+============================================================ */
+
+function renderPlan() {
+
+    if(!state.selectedDateStr)
+        state.selectedDateStr =
+            dateString();
+
+
+    const today =
+        dateString();
+
+
+    const dates =
+        weekDays(
+            state.selectedDateStr
+        );
+
+
+    document
+        .getElementById(
+            "calendar-range"
+        )
+        .innerText =
+            `${formatDate(dates[0])} — ${formatDate(dates[6])}`;
+
+
+    const grid =
+        document.getElementById(
+            "calendar-grid"
+        );
+
+    grid.innerHTML = "";
+
+
+    const labels = [
+        "SEG",
+        "TER",
+        "QUA",
+        "QUI",
+        "SEX",
+        "SÁB",
+        "DOM"
+    ];
+
+
+    let mandatoryDone = 0;
+
+    let optionalDone = 0;
+
+
+    dates.forEach(
+        (dateStr,index) => {
+
+            const date =
+                parseDate(dateStr);
+
+            const day =
+                date.getDay();
+
+            const treino =
+                TREINOS[day];
+
+            const completed =
+                !!state.completedDays[
+                    dateStr
+                ];
+
+            const selected =
+                dateStr ===
+                state.selectedDateStr;
+
+            const isToday =
+                dateStr === today;
+
+            const isMandatory =
+                MANDATORY_DAYS.includes(day);
+
+            const isOptional =
+                day === 6;
+
+
+            if(
+                completed &&
+                isMandatory
+            )
+                mandatoryDone++;
+
+
+            if(
+                completed &&
+                isOptional
+            )
+                optionalDone++;
+
+
+            let icon =
+                treino.rest
+                    ? "—"
+                    : "○";
+
+
+            if(completed)
+                icon = "✓";
+
+            else if(
+                dateStr > today
+            )
+                icon = "🔒";
+
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className = `
+                calendar-day
+                ${
+                    selected
+                        ? "selected"
+                        : ""
+                }
+                ${
+                    completed
+                        ? "completed"
+                        : ""
+                }
+                ${
+                    isToday
+                        ? "today"
+                        : ""
+                }
+            `;
+
+
+            button.innerHTML = `
+
+                <span
+                    class="text-[8px] font-bold opacity-60"
+                >
+                    ${labels[index]}
+                </span>
+
+                <span
+                    class="text-[14px] font-black"
+                >
+                    ${icon}
+                </span>
+
+                <span
+                    class="text-[8px] font-semibold opacity-50"
+                >
+                    ${date.getDate()}
+                </span>
+
+            `;
+
+
+            button.onclick = () => {
+
+                state.selectedDateStr =
+                    dateStr;
+
+                saveState();
+
+                renderPlan();
+
+            };
+
+
+            grid.appendChild(button);
+
+        }
+    );
+
+
+    let status =
+        `Treinos principais: <b>${mandatoryDone}/4</b>`;
+
+
+    if(optionalDone > 0) {
+
+        status +=
+            ` · <span class="text-amber-600">+${optionalDone} opcional</span>`;
+
+    }
+
+
+    if(mandatoryDone >= 4) {
+
+        status +=
+            ` · <span class="text-emerald-600 font-bold">Semana concluída ✨</span>`;
+
+    }
+
+
+    document
+        .getElementById(
+            "week-status"
+        )
+        .innerHTML =
+            status;
+
+
+    renderSelectedWorkout();
+
+}
+
+
+/* ============================================================
+   SELECTED WORKOUT
+============================================================ */
+
+function renderSelectedWorkout() {
+
+    const selected =
+        state.selectedDateStr;
+
+
+    const today =
+        dateString();
+
+
+    const date =
+        parseDate(selected);
+
+
+    const treino =
+        TREINOS[
+            date.getDay()
+        ];
+
+
+    document
+        .getElementById(
+            "workout-day-title"
+        )
+        .innerText =
+            `${treino.dia} · ${formatDate(selected)}`;
+
+
+    document
+        .getElementById(
+            "workout-name"
+        )
+        .innerText =
+            treino.nome;
+
+
+    document
+        .getElementById(
+            "workout-duration"
+        )
+        .innerText =
+            treino.duracao;
+
+
+    const warning =
+        document.getElementById(
+            "late-warning"
+        );
+
+
+    const container =
+        document.getElementById(
+            "exercises-container"
+        );
+
+
+    const button =
+        document.getElementById(
+            "complete-button"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const future =
+        selected > today;
+
+    const past =
+        selected < today;
+
+    const completed =
+        !!state.completedDays[
+            selected
+        ];
+
+
+    if(
+        past &&
+        !completed &&
+        !treino.rest
+    ) {
+
+        warning.classList.remove(
+            "hidden"
+        );
+
+    } else {
+
+        warning.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    if(treino.rest) {
+
+        container.innerHTML = `
+
+            <div
+                class="bg-[#f8f8fa] rounded-2xl p-6 text-center border border-black/5"
+            >
+
+                <div
+                    class="text-4xl"
+                >
+                    ${treino.icon}
+                </div>
+
+                <p
+                    class="font-black mt-3"
+                >
+                    Dia de recuperação
+                </p>
+
+                <p
+                    class="text-xs text-[#8e8e93] leading-relaxed mt-2"
+                >
+                    Hoje não tens de provar nada.
+                    Descansa, recupera e volta amanhã. ❤️
+                </p>
+
+            </div>
+
+        `;
+
+
+        button.classList.add(
+            "hidden"
+        );
+
+        return;
+
+    }
+
+
+    button.classList.remove(
+        "hidden"
+    );
+
+
+    treino.ex.forEach(
+        ex => {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "rounded-[22px] bg-[#f8f8fa] border border-black/5 overflow-hidden";
+
+
+            card.innerHTML = `
+
+                <div class="p-4">
+
+                    <div
+                        class="flex justify-between gap-3"
+                    >
+
+                        <div>
+
+                            <h3
+                                class="text-[15px] font-black"
+                            >
+                                ${ex.nome}
+                            </h3>
+
+                            <p
+                                class="text-xs text-[#8e8e93] mt-1"
+                            >
+                                ${ex.desc}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="exercise-media"
+                >
+
+                    <img
+                        src="${ex.img}"
+                        alt="${ex.nome}"
+                        onerror="
+                            this.onerror=null;
+                            this.parentElement.innerHTML =
+                            '<span class=&quot;text-xs text-[#8e8e93]&quot;>🎥 Exemplo visual indisponível</span>';
+                        "
+                    >
+
+                </div>
+
+
+                <div
+                    class="p-4 space-y-2"
+                >
+
+                    <div
+                        class="bg-white rounded-2xl p-3 border border-rose-100"
+                    >
+
+                        <p
+                            class="text-[10px] uppercase font-bold tracking-wider text-rose-500"
+                        >
+                            Dani Tip
+                        </p>
+
+                        <p
+                            class="text-xs text-[#6e6e73] leading-relaxed mt-1"
+                        >
+                            ${ex.tip}
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="bg-white rounded-2xl p-3 border border-orange-100"
+                    >
+
+                        <p
+                            class="text-[10px] uppercase font-bold tracking-wider text-orange-500"
+                        >
+                            Evita
+                        </p>
+
+                        <p
+                            class="text-xs text-[#6e6e73] leading-relaxed mt-1"
+                        >
+                            ${ex.avoid}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        }
+    );
+
+
+    if(future) {
+
+        button.disabled = true;
+
+        button.className =
+            "w-full mt-5 bg-[#f2f2f7] text-[#8e8e93] font-bold py-4 rounded-2xl text-sm border border-black/5";
+
+        button.innerHTML =
+            "🔒 Treino bloqueado até ao dia";
+
+
+    } else if(completed) {
+
+        button.disabled = true;
+
+        button.className =
+            "w-full mt-5 bg-[#f2f2f7] text-[#8e8e93] font-bold py-4 rounded-2xl text-sm border border-black/5";
+
+        button.innerHTML =
+            "✓ Treino concluído";
+
+
+    } else if(past) {
+
+        button.disabled = false;
+
+        button.className =
+            "ios-button w-full mt-5 bg-[#ff9500] text-white font-bold py-4 rounded-2xl text-sm";
+
+        button.innerHTML =
+            "⏰ Recuperar treino";
+
+
+    } else {
+
+        button.disabled = false;
+
+        button.className =
+            "ios-button w-full mt-5 bg-[#34c759] text-white font-bold py-4 rounded-2xl text-sm shadow-lg";
+
+        button.innerHTML =
+            "✓ Marcar treino como concluído";
+
+    }
+
+}
+
+
+/* ============================================================
+   COMPLETE WORKOUT
+============================================================ */
+
+function concluirTreino() {
+
+    const selected =
+        state.selectedDateStr;
+
+
+    const today =
+        dateString();
+
+
+    if(!selected)
+        return;
+
+
+    if(selected > today)
+        return;
+
+
+    if(
+        state.completedDays[
+            selected
+        ]
+    )
+        return;
+
+
+    const date =
+        parseDate(selected);
+
+
+    const treino =
+        TREINOS[
+            date.getDay()
+        ];
+
+
+    if(treino.rest)
+        return;
+
+
+    const weekIndex =
+        getWeekIndexForDate(
+            selected
+        );
+
+
+    const wasCompleteBefore =
+        isWeekComplete(
+            weekIndex
+        );
+
+
+    state.completedDays[
+        selected
+    ] = {
+
+        type:
+            treino.type,
+
+        name:
+            treino.nome,
+
+        mandatory:
+            treino.mandatory,
+
+        completedAt:
+            new Date().toISOString()
+
+    };
+
+
+    saveState();
+
+
+    celebrateWorkout();
+
+
+    const isCompleteNow =
+        isWeekComplete(
+            weekIndex
+        );
+
+
+    if(
+        treino.mandatory &&
+        !wasCompleteBefore &&
+        isCompleteNow
+    ) {
+
+        setTimeout(
+            () => {
+
+                celebrateWeek(
+                    weekIndex
+                );
+
+            },
+            850
+        );
+
+    }
+
+
+    if(
+        countCompletedWeeks() >= 8
+    ) {
+
+        setTimeout(
+            () => {
+
+                unlockFinalReward();
+
+            },
+            1800
+        );
+
+    }
+
+
+    renderAll();
+
+}
+
+
+/* ============================================================
+   WORKOUT CONFETTI
+============================================================ */
+
+function celebrateWorkout() {
+
+    if(
+        typeof confetti !==
+        "function"
+    )
+        return;
+
+
+    confetti({
+
+        particleCount: 90,
+
+        spread: 65,
+
+        startVelocity: 30,
+
+        origin: {
+            y: .72
+        }
+
+    });
+
+}
+
+
+/* ============================================================
+   WEEK CELEBRATION
+============================================================ */
+
+function celebrateWeek(index) {
+
+    if(
+        state.lastCelebratedWeek ===
+        index
+    )
+        return;
+
+
+    state.lastCelebratedWeek =
+        index;
+
+
+    saveState();
+
+
+    const overlay =
+        document.getElementById(
+            "week-complete-overlay"
+        );
+
+
+    document
+        .getElementById(
+            "celebration-medal"
+        )
+        .innerText =
+            WEEK_MEDALS[index];
+
+
+    document
+        .getElementById(
+            "celebration-title"
+        )
+        .innerText =
+            `Semana ${index + 1} concluída!`;
+
+
+    document
+        .getElementById(
+            "celebration-text"
+        )
+        .innerText =
+            `Completaste os 4 treinos principais da semana ${index + 1}. Mais uma medalha é oficialmente tua. ❤️`;
+
+
+    document
+        .getElementById(
+            "celebration-achievement"
+        )
+        .innerText =
+            `Medalha da Semana ${index + 1}`;
+
+
+    overlay.classList.add(
+        "show"
+    );
+
+
+    if(
+        typeof confetti ===
+        "function"
+    ) {
+
+        const duration =
+            2200;
+
+        const end =
+            Date.now() +
+            duration;
+
+
+        (function frame() {
+
+            confetti({
+
+                particleCount: 4,
+
+                angle: 60,
+
+                spread: 70,
+
+                origin: {
+                    x: 0
+                }
+
+            });
+
+
+            confetti({
+
+                particleCount: 4,
+
+                angle: 120,
+
+                spread: 70,
+
+                origin: {
+                    x: 1
+                }
+
+            });
+
+
+            if(
+                Date.now() < end
+            ) {
+
+                requestAnimationFrame(
+                    frame
+                );
+
+            }
+
+        })();
+
+    }
+
+}
+
+
+/* ============================================================
+   CLOSE CELEBRATION
+============================================================ */
+
+function fecharCelebracao() {
+
+    document
+        .getElementById(
+            "week-complete-overlay"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* ============================================================
+   ACHIEVEMENTS
+============================================================ */
+
+function updateAchievements() {
+
+    const stats =
+        getStats();
+
+
+    ACHIEVEMENTS.forEach(
+        achievement => {
+
+            const unlocked =
+                achievement.req(
+                    stats
+                );
+
+
+            if(
+                unlocked &&
+                !state.unlockedAchievements.includes(
+                    achievement.id
+                )
+            ) {
+
+                state.unlockedAchievements.push(
+                    achievement.id
+                );
+
+            }
+
+        }
+    );
+
+
+    saveState();
+
+}
+
+
+function achievementHTML(
+    achievement
+) {
+
+    const unlocked =
+        state.unlockedAchievements.includes(
+            achievement.id
+        );
+
+
+    return `
+
+        <div
+            class="
+                ios-card
+                p-4
+                flex
+                items-center
+                gap-4
+                ${
+                    unlocked
+                        ? ""
+                        : "opacity-50"
+                }
+            "
+        >
+
+            <div
+                class="
+                    w-12
+                    h-12
+                    rounded-2xl
+                    flex
+                    items-center
+                    justify-center
+                    text-2xl
+                    ${
+                        unlocked
+                            ? "bg-amber-50"
+                            : "bg-[#f2f2f7]"
+                    }
+                "
+            >
+                ${
+                    unlocked
+                        ? achievement.emoji
+                        : "🔒"
+                }
+            </div>
+
+
+            <div class="flex-1">
+
+                <h3
+                    class="text-sm font-black"
+                >
+                    ${achievement.title}
+                </h3>
+
+                <p
+                    class="text-xs text-[#8e8e93] mt-1"
+                >
+                    ${achievement.desc}
+                </p>
+
+            </div>
+
+
+            ${
+                unlocked
+                    ? `
+                        <div
+                            class="text-[10px] font-bold text-emerald-500"
+                        >
+                            DESBLOQUEADA
+                        </div>
+                    `
+                    : ""
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+function renderAchievements() {
+
+    updateAchievements();
+
+
+    const list =
+        document.getElementById(
+            "achievements-list"
+        );
+
+
+    list.innerHTML =
+        ACHIEVEMENTS
+            .map(
+                achievementHTML
+            )
+            .join("");
+
+
+    const unlocked =
+        state.unlockedAchievements
+            .length;
+
+
+    document
+        .getElementById(
+            "achievement-summary"
+        )
+        .innerText =
+            `${unlocked} de ${ACHIEVEMENTS.length} desbloqueadas`;
+
+}
+
+
+function abrirAchievements() {
+
+    updateAchievements();
+
+
+    const list =
+        document.getElementById(
+            "modal-achievements-list"
+        );
+
+
+    list.innerHTML =
+        ACHIEVEMENTS
+            .map(
+                achievementHTML
+            )
+            .join("");
+
+
+    document
+        .getElementById(
+            "achievements-modal"
+        )
+        .classList.remove(
+            "hidden-force"
+        );
+
+}
+
+
+function fecharAchievements(
+    event
+) {
+
+    if(
+        event &&
+        event.target !==
+        document.getElementById(
+            "achievements-modal"
+        )
+    )
+        return;
+
+
+    document
+        .getElementById(
+            "achievements-modal"
+        )
+        .classList.add(
+            "hidden-force"
+        );
+
+}
+
+
+/* ============================================================
+   FINAL REWARD
+============================================================ */
+
+function unlockFinalReward() {
+
+    document
+        .getElementById(
+            "finale"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+    if(
+        typeof confetti ===
+        "function"
+    ) {
+
+        confetti({
+
+            particleCount: 220,
+
+            spread: 110,
+
+            origin: {
+                y: .55
+            }
+
+        });
+
+    }
+
+}
+
+
+function fecharFinale() {
+
+    document
+        .getElementById(
+            "finale"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* ============================================================
+   RENDER ALL
+============================================================ */
+
+function renderAll() {
+
+    ensureStartDate();
+
+    renderGreeting();
+
+    renderDailyMessage();
+
+    renderHome();
+
+    renderPlan();
+
+    renderAchievements();
+
+    updateAchievements();
+
+    saveState();
+
+}
+
+
+/* ============================================================
+   INITIALIZATION
+============================================================ */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        lucide.createIcons();
+
+
+        ensureStartDate();
+
+
+        if(
+            state.seenWelcome
+        ) {
+
+            document
+                .getElementById(
+                    "welcome-screen"
+                )
+                .classList.add(
+                    "hidden"
+                );
+
+
+            document
+                .getElementById(
+                    "main-app"
+                )
+                .classList.remove(
+                    "hidden"
+                );
+
+        }
+
+
+        if(
+            !state.selectedDateStr
+        ) {
+
+            state.selectedDateStr =
+                dateString();
+
+        }
+
+
+        renderAll();
+
+    }
+);
+
+
+/* ============================================================
+   HANDLE APP RESUME
+============================================================ */
+
+document.addEventListener(
+    "visibilitychange",
+    () => {
+
+        if(
+            !document.hidden
+        ) {
+
+            renderAll();
+
+        }
+
+    }
+);
+
+
+/* ============================================================
+   PREVENT DOUBLE TAP ZOOM
+============================================================ */
+
+let lastTouchEnd = 0;
+
+document.addEventListener(
+    "touchend",
+    event => {
+
+        const now =
+            Date.now();
+
+        if(
+            now - lastTouchEnd <= 300
+        ) {
+
+            event.preventDefault();
+
+        }
+
+        lastTouchEnd =
+            now;
+
+    },
+    false
+);
+
+</script>
+
+</body>
+</html>
