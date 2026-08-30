@@ -1434,54 +1434,49 @@
     class="page space-y-4"
 >
 
-
-<div
-    class="ios-card p-5"
->
+<!-- CARTÃO DO PLANO SEMANAL COM CONTROLO MANUAL -->
+<div class="ios-card p-5">
 
     <div class="flex justify-between items-center">
-
-        <div>
-
-            <p
-                class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]"
-            >
-                Plano semanal
-            </p>
-
-            <h2
-                class="text-[22px] font-black tracking-[-.03em] mt-1"
-            >
-                Esta semana
-            </h2>
-
-        </div>
-
-
-        <button
-            onclick="irParaHoje()"
-            class="ios-pill text-[10px] font-bold"
+        <!-- BOTÃO ANTERIOR -->
+        <button 
+            onclick="changeWeek(-1)" 
+            class="ios-pill text-[11px] font-bold px-3 py-1.5 bg-gray-100 active:scale-95 transition"
         >
-            Hoje
+            ← Anterior
         </button>
 
+        <!-- TÍTULO DA SEMANA -->
+        <div class="text-center">
+            <p class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]">
+                Plano de Treinos
+            </p>
+            <h2 
+                id="current-week-display" 
+                class="text-[18px] font-black tracking-[-.03em] mt-0.5"
+            >
+                Semana 1 de 8
+            </h2>
+            <p id="week-range" class="text-[9px] font-semibold text-[#8e8e93] mt-0.5"></p>
+        </div>
+
+        <!-- BOTÃO SEGUINTE -->
+        <button 
+            onclick="changeWeek(1)" 
+            class="ios-pill text-[11px] font-bold px-3 py-1.5 bg-gray-100 active:scale-95 transition"
+        >
+            Seguinte →
+        </button>
     </div>
 
-
-    <p
-        id="calendar-range"
-        class="text-xs text-[#8e8e93] mt-2"
-    ></p>
-
-
-    <div
-        id="calendar-grid"
+    <!-- MANTÉM A GRID DE DIAS E O STATUS -->
+    <div 
+        id="calendar-grid" 
         class="grid grid-cols-7 gap-1.5 mt-5"
     ></div>
 
-
-    <div
-        id="week-status"
+    <div 
+        id="week-status" 
         class="mt-4 pt-4 border-t border-black/5 text-xs text-[#6e6e73] text-center"
     ></div>
 
@@ -1598,6 +1593,32 @@
     class="space-y-3"
 ></div>
 
+</section>
+
+
+<!-- ============================================================
+     VOUCHERS PAGE
+============================================================ -->
+
+<section
+    id="page-vouchers"
+    class="page space-y-4"
+>
+
+    <div class="ios-card p-5">
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 rounded-2xl bg-rose-50 flex items-center justify-center text-lg">🎟️</div>
+            <div>
+                <p class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]">Recompensas do Tiago</p>
+                <h2 class="text-[24px] font-black tracking-[-.04em] mt-1">Os teus vales 🎁</h2>
+            </div>
+        </div>
+        <p class="text-xs text-[#6e6e73] mt-3 leading-relaxed">
+            Completa as semanas para desbloqueares os teus vales especiais. ❤️
+        </p>
+    </div>
+
+    <div id="vouchers-list" class="space-y-3"></div>
 
 </section>
 
@@ -1661,6 +1682,22 @@
             ></i>
 
             Conquistas
+
+        </button>
+
+
+        <button
+            id="nav-vouchers"
+            onclick="changePage('vouchers')"
+            class="nav-button"
+        >
+
+            <i
+                data-lucide="ticket"
+                class="nav-icon"
+            ></i>
+
+            Vales
 
         </button>
 
@@ -1894,13 +1931,14 @@
                     class="text-[18px] leading-relaxed font-black mt-5"
                 >
                     Estou muito orgulhoso de ti. ❤️
+                    Pronta pra próxima?
                 </p>
 
 
                 <p
                     class="text-xs text-[#8e8e93] mt-4"
                 >
-                    — Tiago
+                    — Txigas
                 </p>
 
             </div>
@@ -1976,6 +2014,24 @@ const MS_DAY =
     60 *
     24;
 
+
+    /* ============================================================
+   NAVEGAÇÃO MANUAL DE SEMANAS
+============================================================ */
+
+function changeWeek(direction) {
+    const newWeek = state.selectedWeek + direction;
+    if (newWeek < 1 || newWeek > TOTAL_WEEKS) return;
+
+    state.selectedWeek = newWeek;
+
+    const weekStart = parseDate(state.startDate);
+    weekStart.setDate(weekStart.getDate() + (newWeek - 1) * 7);
+    state.selectedDateStr = dateString(weekStart);
+
+    saveState();
+    renderPlan();
+}
 
 const WEEK_NAMES = [
 
@@ -2286,42 +2342,42 @@ const TREINOS = {
             },
             {
                 nome: "Bulgarian Split Squat",
-                desc: "2 séries × 8–10 cada perna",
+                desc: "3 séries × 8–10 cada perna",
                 img: "assets/exercises/bulgarian.gif",
                 tip: "Mantém o movimento lento e controlado.",
                 avoid: "Inclinar demasiado para a frente ou perder o equilíbrio."
             },
             {
                 nome: "Romanian Deadlift",
-                desc: "2 séries × 12 repetições",
+                desc: "3 séries × 12 repetições",
                 img: "assets/exercises/rdl.gif",
                 tip: "Leva a anca para trás e mantém as costas neutras.",
                 avoid: "Curvar as costas."
             },
             {
                 nome: "Kickback",
-                desc: "2 séries × 15 cada perna",
+                desc: "3 séries × 15 cada perna",
                 img: "assets/exercises/kickback.gif",
                 tip: "Faz uma contração controlada do glúteo no final.",
                 avoid: "Rodar a anca ou usar balanço."
             },
             {
                 nome: "Abdução",
-                desc: "2 séries × 15–20 repetições",
+                desc: "3 séries × 15–20 repetições",
                 img: "assets/exercises/abduction.gif",
                 tip: "Controla o movimento e mantém a tensão no glúteo.",
                 avoid: "Fazer repetições rápidas sem controlo."
             },
             {
                 nome: "Crunch",
-                desc: "2 séries × 15 repetições",
+                desc: "3 séries × 15 repetições",
                 img: "assets/exercises/crunch.gif",
                 tip: "Foca-te na contração do abdómen e não puxes a cabeça.",
                 avoid: "Puxar o pescoço com as mãos."
             },
             {
                 nome: "Prancha",
-                desc: "2 séries × 30–45 segundos",
+                desc: "3 séries × 30–45 segundos",
                 img: "assets/exercises/plank.gif",
                 tip: "Mantém o abdómen e os glúteos contraídos.",
                 avoid: "Deixar a bacia cair."
@@ -2343,105 +2399,204 @@ const TREINOS = {
 
 
 /* ============================================================
-   ACHIEVEMENTS
+   ACHIEVEMENTS COMPLETO (12 CONQUISTAS)
 ============================================================ */
 
 const ACHIEVEMENTS = [
 
     {
-
         id: "first",
-
-        title: "Primeiros Passos",
-
+        title: "Começou o inferno",
         emoji: "🌱",
-
-        desc: "Completar o primeiro treino.",
-
-        req: s => s.totalCompleted >= 1
-
+        desc: "Completar o teu 1.º treino.",
+        req: s => s.mandatory >= 1
     },
 
     {
-
         id: "five",
-
-        title: "Não Desisti",
-
+        title: "Não Há Desculpas",
         emoji: "💪",
-
-        desc: "Completar 5 treinos.",
-
-        req: s => s.totalCompleted >= 5
-
+        desc: "Completar 5 treinos principais.",
+        req: s => s.mandatory >= 5
     },
 
     {
+        id: "halfway",
+        title: "Tá quase!!",
+        emoji: "⚡",
+        desc: "Chegar aos 16 treinos (50% do desafio).",
+        req: s => s.mandatory >= 16
+    },
 
-        id: "runner",
-
-        title: "Runner Dani",
-
+    {
+        id: "runner_pro",
+        title: "Eita como corre",
         emoji: "🏃‍♀️",
-
-        desc: "Completar 5 corridas.",
-
-        req: s => s.runs >= 5
-
+        desc: "Completar 8 treinos de corrida.",
+        req: s => s.runs >= 8
     },
 
     {
-
-        id: "booty",
-
-        title: "Booty Builder",
-
+        id: "booty_master",
+        title: "Glúteos de Aço",
         emoji: "🍑",
-
-        desc: "Completar 8 treinos de pernas/glúteos.",
-
-        req: s => s.glutes >= 8
-
+        desc: "Completar 10 treinos de pernas/glúteos.",
+        req: s => s.glutes >= 10
     },
 
     {
-
         id: "streak",
-
-        title: "Em Chamas",
-
+        title: "BORA PIRUA",
         emoji: "🔥",
-
-        desc: "Atingir um streak de 7 dias.",
-
-        req: s => s.highestStreak >= 7
-
+        desc: "Atingir um streak de 5 treinos seguidos.",
+        req: s => s.highestStreak >= 5
     },
 
     {
+        id: "comeback",
+        title: "Fénix",
+        emoji: "⏰",
+        desc: "Recuperar um treino em atraso sem desistir.",
+        req: s => s.recoveredCount >= 1
+    },
 
+    {
+        id: "weekend_hero",
+        title: "Mitxira qui ce feiz no fim dji semana",
+        emoji: "🌟",
+        desc: "Concluir um treino num Sábado.",
+        req: s => s.saturdayDone >= 1
+    },
+
+    {
+        id: "perfect_week",
+        title: "Semana Impecável",
+        emoji: "✨",
+        desc: "Completar 1 semana inteira sem falhas.",
+        req: s => s.completedWeeks >= 1
+    },
+
+    {
+        id: "twenty",
+        title: "Inquebrável",
+        emoji: "❤️",
+        desc: "Completar 20 treinos. O Tiago está orgulhoso!",
+        req: s => s.mandatory >= 20
+    },
+
+    {
         id: "eight",
-
         title: "Dani Nível 8",
-
         emoji: "🏆",
-
-        desc: "Completar as 8 semanas.",
-
+        desc: "Desbloquear as 8 medalhas semanais.",
         req: s => s.completedWeeks >= 8
+    },
 
+    {
+        id: "final_legend",
+        title: "Nani Fitness",
+        emoji: "👑",
+        desc: "Completar os 32 treinos do desafio.",
+        req: s => s.mandatory >= 32
     }
 
 ];
 
+/* ============================================================
+   VALE-RECOMPENSAS DO TIAGO
+============================================================ */
 
+const VOUCHERS = [
+    {
+        id: "v1",
+        weekReq: 1,
+        title: "Massagem nos Pés 🦶",
+        desc: "Vale 1 massagem relaxante pós-treino feita pelo Tiago.",
+        emoji: "💆‍♂️"
+    },
+    {
+        id: "v2",
+        weekReq: 2,
+        title: "McZin sem Culpas 🍽️",
+        desc: "Podemos ir ao McDonalds sua pirua",
+        emoji: "🍔"
+    },
+    {
+        id: "v4",
+        weekReq: 4,
+        title: "Jantar dos 50% 🍷",
+        desc: "Tu escolhes o restaurante para celebrarmos a metade do desafio!",
+        emoji: "🍕"
+    },
+    {
+        id: "v6",
+        weekReq: 6,
+        title: "Sessão de Cinema V.I.P 🍿",
+        desc: "Tu escolhes o filme e o Tiago trata dos snacks e do conforto.",
+        emoji: "🎬"
+    },
+    {
+        id: "v8",
+        weekReq: 8,
+        title: "Recompensa Final Surpresa 👑",
+        desc: "Um presente especial à tua escolha por completares as 8 semanas!",
+        emoji: "🎁"
+    }
+];
+
+function renderVouchers() {
+    const container = document.getElementById("vouchers-list");
+    if (!container) return;
+
+    container.innerHTML = "";
+    const completedWeeks = countCompletedWeeks();
+
+    VOUCHERS.forEach(v => {
+        const unlocked = completedWeeks >= v.weekReq;
+        const card = document.createElement("div");
+        card.className = `ios-card p-4 flex items-center justify-between gap-3 ${
+            unlocked 
+                ? "border-rose-200 bg-gradient-to-r from-rose-50/40 to-white" 
+                : "opacity-50"
+        }`;
+
+        card.innerHTML = `
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl ${unlocked ? "bg-rose-100" : "bg-[#f2f2f7]"} flex items-center justify-center text-2xl shrink-0">
+                    ${unlocked ? v.emoji : "🔒"}
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h3 class="text-xs font-black">${v.title}</h3>
+                        <span class="text-[9px] font-bold px-2 py-0.5 rounded-full ${unlocked ? "bg-rose-500 text-white" : "bg-gray-200 text-gray-600"}">
+                            Semana ${v.weekReq}
+                        </span>
+                    </div>
+                    <p class="text-[11px] text-[#6e6e73] mt-0.5 leading-tight">${v.desc}</p>
+                </div>
+            </div>
+            <div>
+                ${unlocked 
+                    ? `<span class="text-[10px] font-bold text-rose-500 bg-rose-50 px-2.5 py-1 rounded-lg border border-rose-200 shrink-0">RECLAMAR</span>` 
+                    : `<span class="text-[10px] font-bold text-gray-400 shrink-0">BLOQUEADO</span>`
+                }
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
 /* ============================================================
    STATE
 ============================================================ */
 
-let state = JSON.parse(
-    localStorage.getItem("dani_fitness_premium_v5")
-) || {
+let state;
+try {
+    state = JSON.parse(localStorage.getItem("dani_fitness_premium_v5"));
+} catch(error) {
+    state = null;
+}
+
+state = state || {
 
     seenWelcome: false,
 
@@ -2450,6 +2605,8 @@ let state = JSON.parse(
     completedDays: {},
 
     unlockedAchievements: [],
+
+    selectedWeek: 1,
 
     completedWeeks: [],
 
@@ -2755,111 +2912,91 @@ function totalMandatoryCompleted() {
 ============================================================ */
 
 function calculateStreak() {
-
     let streak = 0;
+    const today = parseDate(dateString());
+    let check = new Date(today);
 
-    const today =
-        parseDate(dateString());
-
-    let check =
-        new Date(today);
-
-    if(
-        !state.completedDays[
-            dateString(check)
-        ]
-    ) {
-
-        check.setDate(
-            check.getDate() - 1
-        );
-
+    // Se hoje ainda não concluiu o treino, começa a verificar a partir de ontem
+    if (!state.completedDays[dateString(check)]) {
+        check.setDate(check.getDate() - 1);
     }
 
-    while(
-        state.completedDays[
-            dateString(check)
-        ]
-    ) {
+    while (true) {
+        const str = dateString(check);
+        const dayOfWeek = check.getDay();
+        const isMandatory = MANDATORY_DAYS.includes(dayOfWeek);
+        const isCompleted = !!state.completedDays[str];
 
-        streak++;
+        if (isCompleted) {
+            streak++;
+        } else if (isMandatory) {
+            // Se era um dia obrigatório e não foi feito, o streak quebra
+            break;
+        }
+        // Dias de descanso (quarta/domingo) e opcionais não feitos são ignorados sem quebrar o streak
 
-        check.setDate(
-            check.getDate() - 1
-        );
+        // Recua um dia no calendário
+        check.setDate(check.getDate() - 1);
 
+        // Limite de segurança: não recuar para antes do início do desafio
+        if (state.startDate && check < parseDate(state.startDate)) {
+            break;
+        }
     }
 
-    if(
-        streak >
-        state.highestStreak
-    ) {
-
-        state.highestStreak =
-            streak;
-
+    if (streak > state.highestStreak) {
+        state.highestStreak = streak;
     }
 
     return streak;
-
 }
 
 
 /* ============================================================
-   STATS
+   STATS COMPLETO
 ============================================================ */
 
 function getStats() {
 
     let runs = 0;
-
     let strength = 0;
-
     let glutes = 0;
+    let saturdayDone = 0;
+    let recoveredCount = 0;
 
-    const total =
-        Object.keys(
-            state.completedDays
-        ).length;
+    const total = Object.keys(state.completedDays).length;
 
-    Object.values(
-        state.completedDays
-    ).forEach(item => {
+    Object.entries(state.completedDays).forEach(([dateStr, item]) => {
 
-        if(item.type === "run")
-            runs++;
+        if (item.type === "run") runs++;
+        if (item.type === "strength") strength++;
+        if (item.type === "glutes") glutes++;
 
-        if(item.type === "strength")
-            strength++;
+        // Verifica se o treino foi realizado num Sábado (dia 6)
+        const dayOfWeek = parseDate(dateStr).getDay();
+        if (dayOfWeek === 6) saturdayDone++;
 
-        if(item.type === "glutes")
-            glutes++;
+        // Verifica se é um treino que foi recuperado em atraso
+        if (item.completedAt) {
+            const completedDateStr = dateString(new Date(item.completedAt));
+            if (completedDateStr > dateStr) recoveredCount++;
+        }
 
     });
 
     return {
-
         runs,
-
         strength,
-
         glutes,
-
         total,
-
-        completedWeeks:
-            countCompletedWeeks(),
-
-        mandatory:
-            totalMandatoryCompleted(),
-
-        highestStreak:
-            state.highestStreak
-
+        saturdayDone,
+        recoveredCount,
+        completedWeeks: countCompletedWeeks(),
+        mandatory: totalMandatoryCompleted(),
+        highestStreak: state.highestStreak
     };
 
 }
-
 
 /* ============================================================
    PAGE NAVIGATION
@@ -2914,6 +3051,9 @@ function changePage(page) {
 
     if(page === "achievements")
         renderAchievements();
+
+    if(page === "vouchers")
+        renderVouchers();
 
 }
 
@@ -3347,29 +3487,29 @@ function renderNextGoal() {
 ============================================================ */
 
 function renderPlan() {
+    if(!state.startDate) ensureStartDate();
+    if(!state.selectedDateStr) state.selectedDateStr = dateString();
 
-    if(!state.selectedDateStr)
-        state.selectedDateStr =
-            dateString();
+    state.selectedWeek = Math.min(
+        TOTAL_WEEKS,
+        Math.max(1, Number(state.selectedWeek) || 1)
+    );
 
+    const today = dateString();
+    const weekStart = parseDate(state.startDate);
+    weekStart.setDate(weekStart.getDate() + (state.selectedWeek - 1) * 7);
+    const weekStartStr = dateString(weekStart);
+    const dates = weekDays(weekStartStr);
 
-    const today =
-        dateString();
+    if(!dates.includes(state.selectedDateStr)) {
+        state.selectedDateStr = weekStartStr;
+    }
 
+    document.getElementById("current-week-display").innerText =
+        `Semana ${state.selectedWeek} de ${TOTAL_WEEKS}`;
 
-    const dates =
-        weekDays(
-            state.selectedDateStr
-        );
-
-
-    document
-        .getElementById(
-            "calendar-range"
-        )
-        .innerText =
-            `${formatDate(dates[0])} — ${formatDate(dates[6])}`;
-
+    const range = document.getElementById("week-range");
+    if(range) range.innerText = `${formatDate(dates[0])} — ${formatDate(dates[6])}`;
 
     const grid =
         document.getElementById(
@@ -3506,8 +3646,11 @@ function renderPlan() {
 
             button.onclick = () => {
 
-                state.selectedDateStr =
-                    dateStr;
+                state.selectedDateStr = dateStr;
+                state.selectedWeek = Math.min(
+                    TOTAL_WEEKS,
+                    Math.max(1, getWeekIndexForDate(dateStr) + 1)
+                );
 
                 saveState();
 
@@ -3881,6 +4024,8 @@ function concluirTreino() {
     if(selected > today)
         return;
 
+    if(state.startDate && selected < state.startDate)
+        return;
 
     if(
         state.completedDays[
@@ -4444,6 +4589,8 @@ function renderAll() {
     renderPlan();
 
     renderAchievements();
+
+    renderVouchers();
 
     updateAchievements();
 
