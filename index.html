@@ -2048,443 +2048,297 @@ const DAILY_MESSAGES = [
 const TREINOS = {
 
     1: {
-
         dia: "SEGUNDA-FEIRA",
-
-        nome: "Corrida Intervalada 🏃‍♀️",
-
-        duracao: "~4 km",
-
+        nome: "Corrida + Core 🏃‍♀️",
+        duracao: "~4 km + 8 min",
         type: "run",
-
         mandatory: true,
-
         rest: false,
-
         icon: "🏃‍♀️",
-
         ex: [
-
             {
-
                 nome: "Corrida Intervalada",
-
-                desc: "2 min a correr / 2 min a andar · repetir até ~4 km",
-
+                desc: "~4 km · 2 min a correr / 2 min a andar · repetir até terminar",
                 img: "assets/exercises/corrida.gif",
-
-                tip: "Não precisas de correr rápido. O objetivo é acabar inteira. ❤️",
-
-                avoid: "Começar demasiado depressa nos primeiros minutos."
-
+                tip: "Não precisas de correr rápido. O objetivo é conseguires terminar o percurso com energia. ❤️",
+                avoid: "Começar demasiado depressa nos primeiros 2 minutos."
+            },
+            {
+                nome: "Dead Bug",
+                desc: "3 séries × 10 cada lado",
+                img: "assets/exercises/deadbug.gif",
+                tip: "Mantém a lombar colada ao chão durante todo o movimento.",
+                avoid: "Deixar a lombar levantar do chão."
+            },
+            {
+                nome: "Prancha",
+                desc: "3 séries × 30–45 segundos",
+                img: "assets/exercises/plank.gif",
+                tip: "Contrai o abdómen e os glúteos e respira normalmente.",
+                avoid: "Deixar a bacia cair ou levantar demasiado."
+            },
+            {
+                nome: "Russian Twist",
+                desc: "3 séries × 10 cada lado",
+                img: "assets/exercises/russian-twist.gif",
+                tip: "Roda o tronco de forma controlada acompanhando o movimento com o peito, mantendo a coluna ereta e o abdómen contraído.",
+                avoid: "Rodar apenas os braços em vez do tronco ou curvar/arquear a coluna durante o movimento."
             }
-
         ]
-
     },
-
 
     2: {
-
         dia: "TERÇA-FEIRA",
-
         nome: "Pernas + Glúteos 🍑",
-
-        duracao: "~30 min",
-
+        duracao: "~25–30 min",
         type: "glutes",
-
         mandatory: true,
-
         rest: false,
-
         icon: "🍑",
-
         ex: [
-
             {
-
                 nome: "Agachamento",
-
                 desc: "3 séries × 12–15 repetições",
-
                 img: "assets/exercises/squat.gif",
-
-                tip: "Empurra o chão para subir e mantém o peito aberto.",
-
+                tip: "Empurra o chão para subir mantendo o peito aberto.",
                 avoid: "Deixar os joelhos cair para dentro."
-
             },
-
             {
-
                 nome: "Glute Bridge",
-
                 desc: "3 séries × 15–20 repetições",
-
                 img: "assets/exercises/glute-bridge.gif",
-
                 tip: "Aperta o glúteo no topo durante 1 segundo. 🍑",
-
                 avoid: "Subir usando demasiado a lombar."
-
             },
-
             {
-
                 nome: "Reverse Lunge",
-
                 desc: "3 séries × 10 cada perna",
-
                 img: "assets/exercises/reverse-lunge.gif",
-
-                tip: "Passo para trás e desce de forma controlada.",
-
+                tip: "Dá um passo largo para trás e desce de forma controlada.",
                 avoid: "Bater com o joelho no chão."
-
             },
-
             {
-
                 nome: "Romanian Deadlift com Mochila",
-
-                desc: "3 séries × 12–15",
-
+                desc: "3 séries × 12–15 repetições",
                 img: "assets/exercises/rdl.gif",
-
                 tip: "Leva a anca para trás mantendo as costas neutras.",
-
-                avoid: "Curvar as costas."
-
+                avoid: "Curvar as costas para tentar descer mais."
             },
-
             {
-
                 nome: "Step-up",
-
                 desc: "3 séries × 10 cada perna",
-
                 img: "assets/exercises/step-up.gif",
-
-                tip: "Usa um degrau ou cadeira muito estável.",
-
-                avoid: "Dar demasiado impulso com a perna de baixo."
-
+                tip: "Usa uma cadeira ou degrau muito estável.",
+                avoid: "Dar um impulso demasiado grande com a perna de baixo."
             },
-
             {
-
                 nome: "Abdução Deitada",
-
                 desc: "3 séries × 15–20 cada lado",
-
                 img: "assets/exercises/abduction.gif",
-
-                tip: "Controla tanto a subida como a descida.",
-
+                tip: "Controla a subida e a descida do movimento.",
                 avoid: "Rodar a anca para trás."
-
             },
-
             {
-
                 nome: "Prancha",
-
                 desc: "3 séries × 30–45 segundos",
-
                 img: "assets/exercises/plank.gif",
-
-                tip: "Contrai o core e os glúteos.",
-
+                tip: "Contrai o core e mantém o corpo alinhado.",
                 avoid: "Deixar a bacia cair."
-
             }
-
         ]
-
     },
-
 
     3: {
-
         dia: "QUARTA-FEIRA",
-
-        nome: "Recuperação Ativa 🚶‍♀️",
-
+        nome: "Recuperação 🚶‍♀️",
         duracao: "30–45 min",
-
         type: "recovery",
-
         mandatory: false,
-
         rest: true,
-
         icon: "🚶‍♀️",
-
         ex: [
-
             {
-
-                nome: "Caminhada ou descanso",
-
-                desc: "30–45 minutos de caminhada leve ou descanso total.",
-
+                nome: "Caminhada ou Descanso",
+                desc: "30–45 min de caminhada leve ou descanso total",
                 img: "assets/exercises/caminhada.gif",
-
-                tip: "Se estiveres cansada, descansar também faz parte do plano.",
-
+                tip: "Se estiveres dorida ou cansada, descansa sem culpa. Recuperar também faz parte do processo. ❤️",
                 avoid: "Forçar quando o corpo pede recuperação."
-
             }
-
         ]
-
     },
-
 
     4: {
-
         dia: "QUINTA-FEIRA",
-
-        nome: "Corrida Intervalada 🏃‍♀️",
-
-        duracao: "~4 km",
-
+        nome: "Corrida + Glúteos 🏃‍♀️🍑",
+        duracao: "~4 km + 8–10 min",
         type: "run",
-
         mandatory: true,
-
         rest: false,
-
         icon: "🏃‍♀️",
-
         ex: [
-
             {
-
-                nome: "Corrida Adaptável",
-
-                desc: "2 min a correr / 2 min a andar · se necessário 1:30 / 2:30",
-
+                nome: "Corrida Intervalada",
+                desc: "~4 km · 2 min a correr / 2 min a andar · repetir",
                 img: "assets/exercises/corrida.gif",
-
-                tip: "O objetivo é consistência, não bater recordes.",
-
-                avoid: "Comparar o ritmo com a corrida anterior."
-
+                tip: "Não interessa o pace. Consistência > velocidade.",
+                avoid: "Tentar bater o ritmo da corrida anterior."
+            },
+            {
+                nome: "Glute Bridge",
+                desc: "3 séries × 15 repetições",
+                img: "assets/exercises/glute-bridge.gif",
+                tip: "Aperta o glúteo no topo e mantém o movimento controlado.",
+                avoid: "Compensar com a lombar."
+            },
+            {
+                nome: "Kickback",
+                desc: "2 séries × 15 cada perna",
+                img: "assets/exercises/kickback.gif",
+                tip: "Leva a perna para trás sem rodar a anca.",
+                avoid: "Arquear a lombar para levantar mais a perna."
+            },
+            {
+                nome: "Abdução Deitada",
+                desc: "2 séries × 15 cada lado",
+                img: "assets/exercises/abduction.gif",
+                tip: "Movimento lento e controlado, focando o glúteo lateral.",
+                avoid: "Rodar o corpo para ganhar amplitude."
             }
-
         ]
-
     },
-
 
     5: {
-
         dia: "SEXTA-FEIRA",
-
         nome: "Corpo Inteiro 💪",
-
-        duracao: "~30 min",
-
+        duracao: "~25–30 min",
         type: "strength",
-
         mandatory: true,
-
         rest: false,
-
         icon: "💪",
-
         ex: [
-
             {
-
                 nome: "Agachamento",
-
-                desc: "3 séries × 12–15",
-
+                desc: "3 séries × 12–15 repetições",
                 img: "assets/exercises/squat.gif",
-
                 tip: "Controla a descida e sobe com força.",
-
                 avoid: "Fazer a descida descontroladamente."
-
             },
-
             {
-
                 nome: "Flexões Inclinadas",
-
-                desc: "3 séries × 8–12",
-
+                desc: "3 séries × 8–12 repetições",
                 img: "assets/exercises/pushup.gif",
-
-                tip: "Mãos apoiadas numa superfície firme.",
-
+                tip: "Apoia as mãos numa superfície firme, como uma mesa ou sofá estável.",
                 avoid: "Deixar o pescoço cair."
-
             },
-
             {
-
                 nome: "Remada com Mochila",
-
-                desc: "3 séries × 12–15",
-
+                desc: "3 séries × 12–15 repetições",
                 img: "assets/exercises/row.gif",
-
-                tip: "Puxa a mochila na direção do umbigo.",
-
-                avoid: "Usar balanço do corpo."
-
+                tip: "Puxa a mochila em direção ao umbigo.",
+                avoid: "Usar o balanço do corpo."
             },
-
             {
-
-                nome: "Romanian Deadlift",
-
-                desc: "3 séries × 12–15",
-
+                nome: "Romanian Deadlift com Mochila",
+                desc: "3 séries × 12–15 repetições",
                 img: "assets/exercises/rdl.gif",
-
-                tip: "Sente o alongamento na parte de trás das pernas.",
-
+                tip: "Sente o alongamento atrás das coxas mantendo as costas neutras.",
                 avoid: "Arredondar as costas."
-
             },
-
             {
-
                 nome: "Glute Bridge",
-
-                desc: "3 séries × 15–20",
-
+                desc: "3 séries × 15–20 repetições",
                 img: "assets/exercises/glute-bridge.gif",
-
-                tip: "Força através dos calcanhares.",
-
-                avoid: "Compensar com a lombar."
-
+                tip: "Força através dos calcanhares e aperta o glúteo no topo.",
+                avoid: "Subir com a força da lombar."
             },
-
             {
-
                 nome: "Shoulder Press",
-
-                desc: "3 séries × 10–15",
-
+                desc: "3 séries × 10–15 repetições",
                 img: "assets/exercises/press.gif",
-
-                tip: "Empurra os pesos diretamente para cima.",
-
+                tip: "Usa garrafas ou uma mochila e empurra diretamente para cima.",
                 avoid: "Arquear demasiado as costas."
-
             },
-
             {
-
                 nome: "Dead Bug",
-
                 desc: "3 séries × 10 cada lado",
-
                 img: "assets/exercises/deadbug.gif",
-
-                tip: "Mantém a lombar colada ao chão.",
-
+                tip: "Mantém a lombar colada ao chão do início ao fim.",
                 avoid: "Perder o controlo do core."
-
             }
-
         ]
-
     },
-
 
     6: {
-
         dia: "SÁBADO",
-
-        nome: "Glúteos + Abs 🌟",
-
-        duracao: "~25 min",
-
+        nome: "Glúteos + Abdominais 🌟",
+        duracao: "~15–20 min",
         type: "glutes",
-
         mandatory: false,
-
         rest: false,
-
         icon: "🍑",
-
         ex: [
-
             {
-
                 nome: "Hip Thrust / Glute Bridge",
-
-                desc: "4 séries × 12–15",
-
+                desc: "3 séries × 12–15 repetições",
                 img: "assets/exercises/hipthrust.gif",
-
-                tip: "Opcional. Faz apenas se estiveres bem.",
-
+                tip: "Opcional. Faz apenas se estiveres recuperada e te sentires bem.",
                 avoid: "Forçar se estiveres cansada."
-
             },
-
             {
-
                 nome: "Bulgarian Split Squat",
-
-                desc: "3 séries × 8–10 cada perna",
-
+                desc: "2 séries × 8–10 cada perna",
                 img: "assets/exercises/bulgarian.gif",
-
                 tip: "Mantém o movimento lento e controlado.",
-
-                avoid: "Descer sem controlo."
-
+                avoid: "Inclinar demasiado para a frente ou perder o equilíbrio."
             },
-
             {
-
-                nome: "Crunch + Prancha",
-
-                desc: "3 séries × 15 + 30–45s",
-
+                nome: "Romanian Deadlift",
+                desc: "2 séries × 12 repetições",
+                img: "assets/exercises/rdl.gif",
+                tip: "Leva a anca para trás e mantém as costas neutras.",
+                avoid: "Curvar as costas."
+            },
+            {
+                nome: "Kickback",
+                desc: "2 séries × 15 cada perna",
+                img: "assets/exercises/kickback.gif",
+                tip: "Faz uma contração controlada do glúteo no final.",
+                avoid: "Rodar a anca ou usar balanço."
+            },
+            {
+                nome: "Abdução",
+                desc: "2 séries × 15–20 repetições",
+                img: "assets/exercises/abduction.gif",
+                tip: "Controla o movimento e mantém a tensão no glúteo.",
+                avoid: "Fazer repetições rápidas sem controlo."
+            },
+            {
+                nome: "Crunch",
+                desc: "2 séries × 15 repetições",
                 img: "assets/exercises/crunch.gif",
-
-                tip: "Concentra-te na contração abdominal.",
-
-                avoid: "Puxar a cabeça com as mãos."
-
+                tip: "Foca-te na contração do abdómen e não puxes a cabeça.",
+                avoid: "Puxar o pescoço com as mãos."
+            },
+            {
+                nome: "Prancha",
+                desc: "2 séries × 30–45 segundos",
+                img: "assets/exercises/plank.gif",
+                tip: "Mantém o abdómen e os glúteos contraídos.",
+                avoid: "Deixar a bacia cair."
             }
-
         ]
-
     },
 
-
     0: {
-
         dia: "DOMINGO",
-
         nome: "Descanso Total 😴",
-
         duracao: "Dia todo",
-
         type: "recovery",
-
         mandatory: false,
-
         rest: true,
-
         icon: "😴",
-
         ex: []
-
     }
-
 };
 
 
