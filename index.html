@@ -1040,18 +1040,6 @@
                 <i data-lucide="trophy" class="w-[18px] h-[18px] text-[#ff9500]"></i>
             </button>
 
-
-            <div
-                class="ios-pill text-xs font-bold text-[#ff375f]"
-            >
-
-                🔥
-                <span id="header-streak">
-                    0
-                </span>
-
-            </div>
-
         </div>
 
     </div>
@@ -1090,14 +1078,10 @@
             </div>
         </div>
 
-        <div class="relative grid grid-cols-3 gap-2 mt-6">
+        <div class="relative grid grid-cols-2 gap-2 mt-6">
             <div class="rounded-2xl bg-white/10 border border-white/10 p-3 text-center">
                 <div id="home-hero-progress" class="text-[18px] font-black">0%</div>
                 <div class="text-[8px] uppercase tracking-wider font-bold text-white/45 mt-1">Progresso</div>
-            </div>
-            <div class="rounded-2xl bg-white/10 border border-white/10 p-3 text-center">
-                <div id="home-hero-streak" class="text-[18px] font-black">🔥 0</div>
-                <div class="text-[8px] uppercase tracking-wider font-bold text-white/45 mt-1">Streak</div>
             </div>
             <div class="rounded-2xl bg-white/10 border border-white/10 p-3 text-center">
                 <div id="home-hero-weeks" class="text-[18px] font-black">0/8</div>
@@ -1144,18 +1128,7 @@
         </div>
     </div>
 
-    <!-- STREAK / OBJETIVO -->
-    <div class="rounded-[26px] bg-white border border-black/5 shadow-sm p-5 fade-up">
-        <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center text-2xl">🔥</div>
-            <div class="flex-1">
-                <p class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]">Consistência</p>
-                <h3 id="home-streak-title" class="text-[17px] font-black mt-0.5">Começa o teu streak</h3>
-                <p id="home-streak-text" class="text-xs text-[#6e6e73] mt-1">Um treino hoje já conta.</p>
-            </div>
-            <div id="home-streak-number" class="text-[24px] font-black">0</div>
-        </div>
-    </div>
+
 
     <!-- MEDALHAS -->
     <div class="ios-card p-5 fade-up">
@@ -2290,14 +2263,6 @@ const ACHIEVEMENTS = [
     },
 
     {
-        id: "streak",
-        title: "BORA PIRUA",
-        emoji: "🔥",
-        desc: "Atingir um streak de 5 treinos seguidos.",
-        req: s => s.highestStreak >= 5
-    },
-
-    {
         id: "comeback",
         title: "Fénix",
         emoji: "⏰",
@@ -2547,7 +2512,6 @@ state = state || {
 
     completedWeeks: [],
 
-    highestStreak: 0,
 
     selectedDateStr: null,
 
@@ -2855,51 +2819,6 @@ function totalMandatoryCompleted() {
 
 
 /* ============================================================
-   STREAK
-============================================================ */
-
-function calculateStreak() {
-    let streak = 0;
-    const today = parseDate(dateString());
-    let check = new Date(today);
-
-    // Se hoje ainda não concluiu o treino, começa a verificar a partir de ontem
-    if (!state.completedDays[dateString(check)]) {
-        check.setDate(check.getDate() - 1);
-    }
-
-    while (true) {
-        const str = dateString(check);
-        const dayOfWeek = check.getDay();
-        const isMandatory = MANDATORY_DAYS.includes(dayOfWeek);
-        const isCompleted = !!state.completedDays[str];
-
-        if (isCompleted) {
-            streak++;
-        } else if (isMandatory) {
-            // Se era um dia obrigatório e não foi feito, o streak quebra
-            break;
-        }
-        // Dias de descanso (quarta/domingo) e opcionais não feitos são ignorados sem quebrar o streak
-
-        // Recua um dia no calendário
-        check.setDate(check.getDate() - 1);
-
-        // Limite de segurança: não recuar para antes do início do desafio
-        if (state.startDate && check < parseDate(state.startDate)) {
-            break;
-        }
-    }
-
-    if (streak > state.highestStreak) {
-        state.highestStreak = streak;
-    }
-
-    return streak;
-}
-
-
-/* ============================================================
    STATS COMPLETO
 ============================================================ */
 
@@ -2939,8 +2858,7 @@ function getStats() {
         saturdayDone,
         recoveredCount,
         completedWeeks: countCompletedWeeks(),
-        mandatory: totalMandatoryCompleted(),
-        highestStreak: state.highestStreak
+        mandatory: totalMandatoryCompleted()
     };
 
 }
@@ -3133,7 +3051,6 @@ function renderHome() {
     const stats = getStats();
     const week = currentWeek();
     const progress = Math.min(100, (stats.mandatory / TOTAL_TARGET) * 100);
-    const streak = calculateStreak();
 
     const setText = (id, value) => {
         const el = document.getElementById(id);
@@ -3149,24 +3066,10 @@ function renderHome() {
     if (bar) bar.style.width = `${progress}%`;
 
     setText("home-hero-progress", `${Math.round(progress)}%`);
-    setText("home-hero-streak", `🔥 ${streak}`);
     setText("home-hero-weeks", `${countCompletedWeeks()}/${TOTAL_WEEKS}`);
     setText("home-stat-runs", stats.runs);
     setText("home-stat-strength", stats.strength);
     setText("home-stat-glutes", stats.glutes);
-    setText("header-streak", streak);
-    setText("home-streak-number", streak);
-
-    if (streak >= 5) {
-        setText("home-streak-title", `${streak} treinos seguidos 🔥`);
-        setText("home-streak-text", streak >= 7 ? "Estás imparável. O Tiago está orgulhoso. ❤️" : "Não deixes esta sequência morrer agora.");
-    } else if (streak > 0) {
-        setText("home-streak-title", `${streak} ${streak === 1 ? "treino" : "treinos"} seguidos`);
-        setText("home-streak-text", `Faltam ${5 - streak} para desbloqueares a conquista do streak.`);
-    } else {
-        setText("home-streak-title", "Começa o teu streak");
-        setText("home-streak-text", "Um treino hoje já conta. Vamos Dani. ❤️");
-    }
 
     const today = dateString();
     const treino = TREINOS[parseDate(today).getDay()];
@@ -4049,7 +3952,7 @@ function resetarDados(){
     if(!confirm("Tens a certeza que queres apagar TODO o progresso?")) return;
     if(!confirm("Última confirmação: esta ação não pode ser desfeita sem um backup.")) return;
     localStorage.removeItem("dani_fitness_premium_v6");
-    Object.assign(state,{seenWelcome:false,startDate:null,completedDays:{},unlockedAchievements:[],selectedWeek:1,completedWeeks:[],highestStreak:0,selectedDateStr:null,lastCelebratedWeek:null,redeemedVouchers:[],notificationsEnabled:false});
+    Object.assign(state,{seenWelcome:false,startDate:null,completedDays:{},unlockedAchievements:[],selectedWeek:1,completedWeeks:[],selectedDateStr:null,lastCelebratedWeek:null,redeemedVouchers:[],notificationsEnabled:false});
     saveState(); location.reload();
 }
 
