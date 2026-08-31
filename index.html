@@ -1059,33 +1059,24 @@
 
 <section id="page-home" class="page active space-y-4">
 
-    <!-- HERO / RESUMO -->
-    <div class="relative overflow-hidden rounded-[30px] bg-[#111111] text-white p-5 shadow-xl fade-up">
-        <div class="absolute -right-16 -top-20 w-56 h-56 rounded-full bg-rose-500/20 blur-2xl"></div>
-        <div class="absolute -left-20 -bottom-24 w-64 h-64 rounded-full bg-purple-500/15 blur-3xl"></div>
+    <!-- HERO / MENSAGEM -->
+    <div class="relative overflow-hidden rounded-[30px] bg-[#111111] text-white p-6 shadow-xl fade-up">
+        <div class="absolute -right-20 -top-24 w-64 h-64 rounded-full bg-rose-500/20 blur-3xl"></div>
+        <div class="absolute -left-24 -bottom-28 w-72 h-72 rounded-full bg-purple-500/15 blur-3xl"></div>
 
-        <div class="relative flex items-start justify-between gap-4">
-            <div>
-                <p class="text-[10px] uppercase tracking-[.18em] font-bold text-white/45">
-                    DESAFIO DANI FITNESS
-                </p>
-                <p class="text-xs text-white/60 mt-2">Semana <span id="hero-week-number">1</span> de 8</p>
-                <h2 id="hero-title" class="text-[29px] leading-none font-black tracking-[-.045em] mt-1">A começar 💪</h2>
-                <p id="hero-subtitle" class="text-xs text-white/65 mt-2">Vamos fazer isto juntos.</p>
-            </div>
-            <div class="w-20 h-25 rounded-[20px] overflow-hidden border border-white/15 shadow-lg shrink-0">
-                <img src="assets/dani.jpg" alt="Dani" class="w-full h-full object-cover" onerror="this.style.display='none'">
-            </div>
+        <div class="relative">
+            <p class="text-[10px] uppercase tracking-[.18em] font-bold text-white/45">DANI FITNESS</p>
+            <h2 class="text-[32px] leading-[.98] font-black tracking-[-.05em] mt-3">Um treino de cada vez. ❤️</h2>
+            <p class="text-sm leading-relaxed text-white/65 mt-4 max-w-sm">Não precisas de pensar nas oito semanas. Hoje basta apareceres, fazeres o teu melhor e saíres orgulhosa de ti.</p>
         </div>
 
-        <div class="relative grid grid-cols-2 gap-2 mt-6">
-            <div class="rounded-2xl bg-white/10 border border-white/10 p-3 text-center">
-                <div id="home-hero-progress" class="text-[18px] font-black">0%</div>
-                <div class="text-[8px] uppercase tracking-wider font-bold text-white/45 mt-1">Progresso</div>
+        <div class="relative flex items-center gap-3 mt-6">
+            <div class="w-12 h-12 rounded-2xl overflow-hidden border border-white/15 shadow-lg shrink-0">
+                <img src="assets/dani.jpg" alt="Dani" class="w-full h-full object-cover" onerror="this.style.display='none'">
             </div>
-            <div class="rounded-2xl bg-white/10 border border-white/10 p-3 text-center">
-                <div id="home-hero-weeks" class="text-[18px] font-black">0/8</div>
-                <div class="text-[8px] uppercase tracking-wider font-bold text-white/45 mt-1">Semanas</div>
+            <div>
+                <p class="text-xs font-bold">Estou a torcer por ti.</p>
+                <p class="text-[11px] text-white/45 mt-0.5">Sem pressa. Sem pressão. Só continua. 🌷</p>
             </div>
         </div>
     </div>
@@ -1110,48 +1101,26 @@
         </button>
     </div>
 
-    <!-- PROGRESSO -->
+    <!-- MENSAGEM TRANQUILA -->
     <div class="ios-card p-5 fade-up">
-        <div class="flex items-end justify-between">
+        <div class="flex items-start gap-3">
+            <div class="w-11 h-11 rounded-2xl bg-rose-50 flex items-center justify-center text-xl shrink-0">💗</div>
             <div>
-                <p class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]">O teu progresso</p>
-                <h2 id="home-progress-title" class="text-[20px] font-black mt-1">0 de 32 treinos</h2>
+                <p class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]">Para hoje</p>
+                <h2 class="text-[19px] font-black tracking-[-.03em] mt-1">Não tens de fazer tudo perfeito.</h2>
+                <p class="text-xs text-[#6e6e73] leading-relaxed mt-2">Há dias em que vais ter mais energia e outros em que vais ter menos. O importante é cuidares de ti e respeitares o teu ritmo.</p>
             </div>
-            <span id="home-progress-percent" class="text-sm font-black text-rose-500">0%</span>
-        </div>
-        <div class="progress-track mt-4"><div id="home-progress-bar" class="progress-fill" style="width:0%"></div></div>
-
-        <div class="grid grid-cols-3 gap-2 mt-4">
-            <div class="stat-card text-center"><div id="home-stat-runs" class="text-[18px] font-black text-[#ff375f]">0</div><div class="text-[9px] uppercase font-bold tracking-wider text-[#8e8e93]">Corridas</div></div>
-            <div class="stat-card text-center"><div id="home-stat-strength" class="text-[18px] font-black text-[#007aff]">0</div><div class="text-[9px] uppercase font-bold tracking-wider text-[#8e8e93]">Força</div></div>
-            <div class="stat-card text-center"><div id="home-stat-glutes" class="text-[18px] font-black text-[#af52de]">0</div><div class="text-[9px] uppercase font-bold tracking-wider text-[#8e8e93]">Glúteos</div></div>
         </div>
     </div>
 
-
-
-    <!-- MEDALHAS -->
-    <div class="ios-card p-5 fade-up">
-        <div class="flex items-center justify-between mb-4">
-            <div>
-                <p class="text-[10px] uppercase tracking-wider font-bold text-[#8e8e93]">A tua jornada</p>
-                <h2 class="text-[18px] font-black mt-1">Medalhas das semanas</h2>
-            </div>
-            <span id="medals-count" class="text-xs font-bold text-[#8e8e93]">0/8</span>
+    <!-- FOTO / PAUSA -->
+    <div class="relative overflow-hidden rounded-[28px] h-43 shadow-sm fade-up">
+        <img src="assets/dani.jpg" alt="Dani" class="w-full h-full object-cover" onerror="this.style.display='none'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-4 left-5 right-5 text-white">
+            <p class="text-[10px] uppercase tracking-[.16em] font-bold text-white/65">Lembra-te</p>
+            <p class="text-lg font-black tracking-[-.03em] mt-1">Estás a construir uma versão tua ainda mais forte. ✨</p>
         </div>
-        <div id="weekly-medals" class="grid grid-cols-4 gap-4"></div>
-    </div>
-
-    <!-- PRÓXIMO OBJETIVO -->
-    <div id="next-goal-card" class="rounded-[26px] bg-[#111111] text-white p-5 shadow-xl">
-        <div class="flex items-center gap-3">
-            <div id="next-goal-icon" class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center text-xl">🎯</div>
-            <div>
-                <p class="text-[10px] uppercase tracking-wider font-bold text-white/45">Próximo objetivo</p>
-                <h3 id="next-goal-title" class="font-black text-[16px] mt-1">Completar esta semana</h3>
-            </div>
-        </div>
-        <p id="next-goal-text" class="text-xs text-white/60 leading-relaxed mt-4">Ainda faltam 4 treinos para desbloqueares a medalha desta semana.</p>
     </div>
 
 </section>
@@ -3048,54 +3017,36 @@ function renderGreeting() {
 ============================================================ */
 
 function renderHome() {
-    const stats = getStats();
-    const week = currentWeek();
-    const progress = Math.min(100, (stats.mandatory / TOTAL_TARGET) * 100);
+    const today = dateString();
+    const treino = TREINOS[parseDate(today).getDay()];
 
     const setText = (id, value) => {
         const el = document.getElementById(id);
         if (el) el.innerText = value;
     };
 
-    setText("hero-week-number", week);
-    setText("hero-title", WEEK_NAMES[week - 1]);
-    setText("hero-subtitle", week >= 8 ? "A última semana. Dá tudo. ❤️" : "Continua assim. Um treino de cada vez.");
-    setText("home-progress-title", `${stats.mandatory} de ${TOTAL_TARGET} treinos`);
-    setText("home-progress-percent", `${Math.round(progress)}%`);
-    const bar = document.getElementById("home-progress-bar");
-    if (bar) bar.style.width = `${progress}%`;
+    if (!treino) return;
 
-    setText("home-hero-progress", `${Math.round(progress)}%`);
-    setText("home-hero-weeks", `${countCompletedWeeks()}/${TOTAL_WEEKS}`);
-    setText("home-stat-runs", stats.runs);
-    setText("home-stat-strength", stats.strength);
-    setText("home-stat-glutes", stats.glutes);
+    setText("home-workout-day", treino.dia);
+    setText("home-workout-name", treino.nome);
+    setText("home-workout-meta", treino.duracao);
+    setText("home-workout-icon", treino.icon);
 
-    const today = dateString();
-    const treino = TREINOS[parseDate(today).getDay()];
-    if (treino) {
-        setText("home-workout-day", treino.dia);
-        setText("home-workout-name", treino.nome);
-        setText("home-workout-meta", treino.duracao);
-        setText("home-workout-icon", treino.icon);
-        const status = document.getElementById("home-workout-status");
-        if (status) {
-            if (treino.rest) {
-                status.innerText = "Hoje é descanso. Aproveita para recuperar. 😴";
-                status.className = "mt-4 rounded-2xl bg-blue-50 border border-blue-100 px-4 py-3 text-xs font-semibold text-blue-900";
-            } else if (state.completedDays[today]) {
-                status.innerText = "✓ Treino concluído. Muito bem, Dani! ❤️";
-                status.className = "mt-4 rounded-2xl bg-green-50 border border-green-100 px-4 py-3 text-xs font-semibold text-green-800";
-            } else {
-                status.innerText = "O treino de hoje está à tua espera. Não vale fugir. 👀";
-                status.className = "mt-4 rounded-2xl bg-[#f8f8fa] border border-black/5 px-4 py-3 text-xs font-semibold text-[#6e6e73]";
-            }
+    const status = document.getElementById("home-workout-status");
+    if (status) {
+        if (treino.rest) {
+            status.innerText = "Hoje é dia de recuperação. Aproveita para abrandar e cuidar de ti. 😴";
+            status.className = "mt-4 rounded-2xl bg-blue-50 border border-blue-100 px-4 py-3 text-xs font-semibold text-blue-900";
+        } else if (state.completedDays[today]) {
+            status.innerText = "✓ Treino concluído. Muito bem, Dani! ❤️";
+            status.className = "mt-4 rounded-2xl bg-green-50 border border-green-100 px-4 py-3 text-xs font-semibold text-green-800";
+        } else {
+            status.innerText = "Sem pressão. Quando estiveres pronta, ele está aqui. 🌷";
+            status.className = "mt-4 rounded-2xl bg-[#f8f8fa] border border-black/5 px-4 py-3 text-xs font-semibold text-[#6e6e73]";
         }
     }
-
-    renderWeeklyMedals();
-    renderNextGoal();
 }
+
 
 
 /* ============================================================
